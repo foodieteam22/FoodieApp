@@ -1,0 +1,32 @@
+package com.example.foodieapp.database
+
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+
+@Database(entities = arrayOf(RestaurantEntry::class),version = 1,exportSchema = false)
+abstract class RestaurantDatabase:RoomDatabase() {
+
+    abstract fun resturantDao():RestaurantDao
+
+   companion object
+   {
+       private var INSTANCE :RestaurantDatabase? =null
+       fun  getDatabase(context: Context):RestaurantDatabase
+       {
+           synchronized(this){
+               var instance = INSTANCE
+               if(instance==null) // instance ilkez oluşturuyor ise
+               {
+                instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    RestaurantDatabase::class.java,
+                    "restaurant_database").fallbackToDestructiveMigration().build()
+                   INSTANCE = instance
+               }
+                return instance
+           }
+       }
+   }
+}
