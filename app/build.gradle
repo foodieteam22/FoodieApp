@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs.kotlin'
 
+
 }
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
@@ -24,6 +25,9 @@ android {
     }
     buildFeatures{
         dataBinding true
+    }
+    buildFeatures {
+        viewBinding = true
     }
     buildTypes {
         release {
