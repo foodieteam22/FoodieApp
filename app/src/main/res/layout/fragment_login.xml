@@ -31,6 +31,7 @@
             android:layout_height="0dp"
             android:layout_marginVertical="50dp"
             android:layout_weight="1"
+            android:fontFamily="@font/abeezee"
             android:text="WELCOME TO FOODİE "
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -39,9 +40,10 @@
 
         <EditText
             android:id="@+id/etEmailAddress"
+            android:paddingHorizontal="10dp"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_marginHorizontal="5dp"
+            android:layout_height="20dp"
+            android:layout_marginHorizontal="15dp"
             android:layout_marginVertical="10dp"
             android:layout_weight="1"
             android:background="@drawable/edit_text_background"
@@ -49,26 +51,29 @@
             android:hint="  Email"
 
             android:inputType="textEmailAddress"
+            android:textColor="@color/white"
             android:textColorHint="#FFFFFF" />
 
         <EditText
             android:id="@+id/etPassword"
+            android:paddingHorizontal="10dp"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_marginHorizontal="5dp"
+            android:layout_height="20dp"
+            android:layout_marginHorizontal="15dp"
             android:layout_marginVertical="10dp"
             android:layout_weight="1"
             android:background="@drawable/edit_text_background"
             android:ems="10"
             android:hint="  Password"
             android:inputType="textPassword"
+            android:textColor="@color/white"
             android:textColorHint="#FFFFFF" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSignIn"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_marginHorizontal="5dp"
+            android:layout_height="20dp"
+            android:layout_marginHorizontal="15dp"
             android:layout_marginVertical="10dp"
             android:layout_weight="1"
             android:textColor="@color/white"
@@ -106,9 +111,9 @@
 
             android:id="@+id/btnForgotPassword"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:layout_marginTop="60dp"
-            android:layout_marginBottom="0dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:textColor="@color/white"
             android:background="@color/black"
