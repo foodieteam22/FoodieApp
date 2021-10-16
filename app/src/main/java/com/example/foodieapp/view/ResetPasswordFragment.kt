@@ -91,6 +91,39 @@ class ResetPasswordFragment : Fragment() {
             val action = ResetPasswordFragmentDirections.actionResetPasswordFragmentToLoginFragment()
             Navigation.findNavController(view).navigate(action)
         }
+
+        binding.btnUpdatePassword.setOnClickListener {
+            val newPassword =binding.etnewPassword.text.toString()
+
+            val user = Firebase.auth.currentUser
+
+            user!!.updatePassword(newPassword)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(requireContext(), "User password updated.", Toast.LENGTH_SHORT).show()
+                    }
+                }.addOnFailureListener {
+                    Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_SHORT).show()
+                }
+
+            val action = ResetPasswordFragmentDirections.actionResetPasswordFragmentToLoginFragment()
+            Navigation.findNavController(view).navigate(action)
+        }
+        binding.btnUpdateEmail.setOnClickListener {
+            val user = Firebase.auth.currentUser
+            val email =binding.etEmailAddress.text.toString()
+
+            user!!.updateEmail(email)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(requireContext(), "User email address updated.", Toast.LENGTH_SHORT).show()
+                    }
+                }.addOnFailureListener {
+                    Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_SHORT).show()
+                }
+            val action = ResetPasswordFragmentDirections.actionResetPasswordFragmentToLoginFragment()
+            Navigation.findNavController(view).navigate(action)
+        }
     }
 
 }
