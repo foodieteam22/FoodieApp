@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    >
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/background_selector"
+        tools:context=".view.LoginFragment">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_marginVertical="50dp"
+            app:srcCompat="@drawable/foodielogo" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginVertical="50dp"
+            android:layout_weight="1"
+            android:text="WELCOME TO FOODİE "
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+
+        <EditText
+            android:id="@+id/etEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_background"
+            android:ems="10"
+            android:hint="  Email"
+
+            android:inputType="textEmailAddress"
+            android:textColorHint="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_background"
+            android:ems="10"
+            android:hint="  Password"
+            android:inputType="textPassword"
+            android:textColorHint="#FFFFFF" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="10dp"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:background="@drawable/button_selector"
+            android:onClick="signIn"
+            android:text="SIGN IN" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="0dp"
+            android:textAlignment="center"
+            android:text="OR" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="signUp"
+            android:text="SİGN UP"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+
+            android:id="@+id/btnForgotPassword"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:background="@color/black"
+            android:text="Forgot Password?" />
+
+
+
+
+    </LinearLayout>
+</layout>
