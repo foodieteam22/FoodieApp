@@ -58,7 +58,7 @@ class ResetPasswordFragment : Fragment() {
             if(info =="changePassword"){
                 binding.etEmailAddress.visibility= View.GONE
                 binding.btnResetPassword.visibility = View.GONE
-                binding.tvForgotPassword.visibility = View.GONE
+                binding.tvForgotPassword.text = "CHANGE PASSWORD?"
                 binding.btnUpdateEmail.visibility = View.GONE
                 binding.etnewPassword.visibility = View.VISIBLE
                 binding.btnUpdatePassword.visibility = View.VISIBLE
@@ -67,7 +67,7 @@ class ResetPasswordFragment : Fragment() {
             if (info=="changeEmail"){
                 binding.etEmailAddress.visibility= View.VISIBLE
                 binding.btnResetPassword.visibility = View.GONE
-                binding.tvForgotPassword.visibility = View.GONE
+                binding.tvForgotPassword.text = "CHANGE EMAIL?"
                 binding.btnUpdateEmail.visibility = View.VISIBLE
                 binding.etnewPassword.visibility = View.GONE
                 binding.btnUpdatePassword.visibility = View.GONE

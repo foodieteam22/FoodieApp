@@ -15,6 +15,59 @@
         android:background="@drawable/background_selector">
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="20dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imgProfile"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:src="@drawable/usericon"
+                app:civ_border_width="4dp"
+                app:civ_border_color="#B1B1B1"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/tvUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Kullanıcı Adı"
+                    android:paddingHorizontal="10dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/editicon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/editicon"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="5dp"
+                    app:civ_border_width="3dp"
+                    app:civ_border_color="#FFFFFF"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,44 +76,192 @@
             android:padding="20dp">
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="0dp">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnchangePassword"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/imgRating"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="0dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ratingicon"
+                    app:civ_border_width="3dp"
+                    app:civ_border_color="#ffffff"/>
+                <Button
+                    android:id="@+id/btnRating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:text="Değerlendirmelerim"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:iconGravity="textStart" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/button_selector"
-                android:textColor="@color/white"
-                android:text="Change My Password" />
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnchangeEmail"
+                android:orientation="horizontal"
+                android:padding="0dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/ImgBooking"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="0dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/bookingicon"
+                    app:civ_border_width="3dp"
+                    app:civ_border_color="#ffffff"/>
+                <Button
+                    android:id="@+id/btnBooking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:text="Rezervasyonlarım"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:iconGravity="textStart" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="10dp"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:background="@drawable/button_selector"
-                android:text="Change My Email" />
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnLogout"
+                android:orientation="horizontal"
+                >
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/imgChangePassword"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="0dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/changepasswordicon"
+                    app:civ_border_width="3dp"
+                    app:civ_border_color="#ffffff"/>
+                <Button
+                    android:id="@+id/btnchangePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="sans-serif-medium"
+                    android:inputType="text"
+                    android:text="Parola Değiştir"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="10dp"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:background="@drawable/button_selector"
-                android:text="Log Out" />
+                android:orientation="horizontal"
+                >
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/imgChangeEmail"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="0dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/changeemailicon"
+                    app:civ_border_width="3dp"
+                    app:civ_border_color="#ffffff"/>
+                <Button
+                    android:id="@+id/btnchangeEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:text="Email Adresi Değiştir"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/imgLogout"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="0dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/logouticon"
+                    app:civ_border_width="3dp"
+                    app:civ_border_color="#ffffff"/>
+
+                <Button
+                    android:id="@+id/btnLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:text="Çıkış Yap"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:iconGravity="textStart" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/imgHelp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="0dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/helpicon"
+                    app:civ_border_width="3dp"
+                    app:civ_border_color="#ffffff"/>
+                <Button
+                    android:id="@+id/btnHelp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:text="Yardım"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:iconGravity="textStart" />
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
 
 
 
         </LinearLayout>
-
-
-
 
 
 

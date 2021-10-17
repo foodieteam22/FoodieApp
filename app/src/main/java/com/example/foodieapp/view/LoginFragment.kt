@@ -39,6 +39,13 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         auth = Firebase.auth
+
+        val currentUser = auth.currentUser
+
+       if(currentUser != null){
+           val action = LoginFragmentDirections.actionLoginFragmentToProfileFragment()
+           Navigation.findNavController(view).navigate(action)
+       }
         binding.btnSignIn.setOnClickListener { signIn(view)}
         binding.btnSignUp.setOnClickListener { signUp(view)}
 
