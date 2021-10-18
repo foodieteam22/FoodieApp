@@ -37,5 +37,35 @@
         <action
             android:id="@+id/action_profileFragment_to_resetPasswordFragment"
             app:destination="@id/resetPasswordFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_commentFragment"
+            app:destination="@id/commentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/commentFragment"
+        android:name="com.example.foodieapp.view.CommentFragment"
+        android:label="CommentFragment" >
+        <action
+            android:id="@+id/action_commentFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <argument
+            android:name="author"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="restaurantId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/ratingFragment"
+        android:name="com.example.foodieapp.view.RatingFragment"
+        android:label="RatingFragment" >
+        <argument
+            android:name="restaurantInfo"
+            app:argType="com.example.foodieapp.database.RestaurantEntry" />
+        <argument
+            android:name="author"
+            app:argType="string" />
     </fragment>
 </navigation>

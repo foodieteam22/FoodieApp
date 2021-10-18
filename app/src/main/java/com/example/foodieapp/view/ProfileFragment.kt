@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import com.example.foodieapp.R
+import com.example.foodieapp.database.RestaurantEntry
 import com.example.foodieapp.databinding.FragmentLoginBinding
 import com.example.foodieapp.databinding.FragmentProfileBinding
 import com.google.android.material.snackbar.Snackbar
@@ -91,6 +92,12 @@ class ProfileFragment : Fragment() {
 
             }
         }
+
+        binding.btnRating.setOnClickListener {
+            val action = ProfileFragmentDirections.actionProfileFragmentToCommentFragment(binding.tvUserName.text.toString(),0)
+            Navigation.findNavController(view).navigate(action)
+        }
+
     }
 
     private fun registerLauncher() {
