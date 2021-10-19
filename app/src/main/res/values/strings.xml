@@ -7,4 +7,10 @@
     <string name="rating_service">Servis</string>
     <string name="rating_hygiene">Hijyen</string>
     <string name="rating_comment_hint">Buraya yazın</string>
+    <string name="resturant_title">İzmir Sakız Restoran</string>
+    <string name="resturant_full_control">%50</string>
+    <string name="resturant_total_rating">9.2</string>
+    <string name="resturant_detail1">Çocuk Oyun Alanı</string>
+    <string name="resturant_detail2">Açık Alan</string>
+    <string name="resturant_detail3">Vegan</string>
 </resources>
