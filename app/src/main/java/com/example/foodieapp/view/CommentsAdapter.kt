@@ -30,6 +30,7 @@ class CommentsAdapter(private val commentsData: List<CommentEntry>): RecyclerVie
         val contactView = inflater.inflate(R.layout.comment_row_layout, parent, false)
         // Return a new holder instance
         return ViewHolder(contactView)
+
     }
 
     // Involves populating data into the item through holder

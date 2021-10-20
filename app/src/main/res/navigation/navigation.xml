@@ -68,4 +68,8 @@
             android:name="author"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/restaurantFragment"
+        android:name="com.example.foodieapp.view.RestaurantFragment"
+        android:label="RestaurantFragment" />
 </navigation>
