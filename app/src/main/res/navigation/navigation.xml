@@ -47,9 +47,11 @@
             android:id="@+id/action_profileFragment_to_commentFragment"
             app:destination="@id/commentFragment" />
         <argument
-            android:name="userId"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:name="user"
+            app:argType="com.example.foodieapp.database.UserEntry" />
+        <action
+            android:id="@+id/action_profileFragment_self"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/commentFragment"
@@ -81,5 +83,9 @@
     <fragment
         android:id="@+id/restaurantFragment"
         android:name="com.example.foodieapp.view.RestaurantFragment"
-        android:label="RestaurantFragment" />
+        android:label="RestaurantFragment" >
+        <argument
+            android:name="user"
+            app:argType="com.example.foodieapp.database.UserEntry" />
+    </fragment>
 </navigation>

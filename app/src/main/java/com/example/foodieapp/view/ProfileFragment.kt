@@ -6,31 +6,42 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.foodieapp.R
-import com.example.foodieapp.database.RestaurantEntry
-import com.example.foodieapp.databinding.FragmentLoginBinding
+import com.example.foodieapp.database.UserEntry
 import com.example.foodieapp.databinding.FragmentProfileBinding
+import com.example.foodieapp.utils.downloadImage
+import com.example.foodieapp.utils.makePlaceholder
+import com.example.foodieapp.viewmodel.ProfileViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 
 
 class ProfileFragment : Fragment() {
+   private val viewModel: ProfileViewModel by viewModels()
+    private lateinit var storage: FirebaseStorage
     private lateinit var auth: FirebaseAuth
     private val binding get() = _binding!!
     private var _binding: FragmentProfileBinding? = null
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
     private  lateinit var permissonLauncher : ActivityResultLauncher<String>
     var selectedPicture : Uri? = null
+    private lateinit var user: UserEntry
+    private lateinit var args: ProfileFragmentArgs
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,26 +56,26 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+         args = ProfileFragmentArgs.fromBundle(requireArguments())
         _binding = FragmentProfileBinding.inflate(layoutInflater,container,false)
         val view = binding.root
         return view
 
-
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val args = ProfileFragmentArgs.fromBundle(requireArguments())
-        registerLauncher()
+           binding.tvUserName.text = args.user.email.toString()
+           binding.imgProfile.downloadImage(args.user.downloadUrl, makePlaceholder(requireContext()))
+
+
+       registerLauncher()
 
 
         binding.btnchangePassword.setOnClickListener {
             val action = ProfileFragmentDirections.actionProfileFragmentToResetPasswordFragment("changePassword")
-            Navigation.findNavController(view).navigate(action)
-        }
-        binding.btnchangeEmail.setOnClickListener {
-            val action = ProfileFragmentDirections.actionProfileFragmentToResetPasswordFragment("changeEmail")
             Navigation.findNavController(view).navigate(action)
         }
         binding.btnLogout.setOnClickListener {
@@ -93,6 +104,12 @@ class ProfileFragment : Fragment() {
 
 
             }
+            storage = Firebase.storage
+            auth = Firebase.auth
+
+
+
+
         }
 
         binding.btnRating.setOnClickListener {
@@ -111,6 +128,7 @@ class ProfileFragment : Fragment() {
                     selectedPicture = intentFromResult.data
                     selectedPicture?.let {
                         binding.imgProfile.setImageURI(it)
+                        updateUser()
                     }
                 }
             }
@@ -125,6 +143,35 @@ class ProfileFragment : Fragment() {
             }
         }
 
+    }
+    private fun updateUser(){
+        if (selectedPicture!=null){
+
+            val reference = storage.reference
+            val imageReference = reference.child("images").child(auth.currentUser?.uid.toString())
+            imageReference.putFile(selectedPicture!!).addOnSuccessListener{
+                val uploadPictureReference =
+                    storage.reference.child("images").child(auth.currentUser?.uid.toString())
+                uploadPictureReference.downloadUrl.addOnSuccessListener {
+                    val downloadUrl = it.toString()
+                    if (auth.currentUser != null) {
+                        val user = UserEntry(
+                            args.user.id,
+                            args.user.email,
+                            downloadUrl
+                        )
+                        viewModel.updateUser(user)
+                        Toast.makeText(requireContext(), "güncellendi", Toast.LENGTH_SHORT).show()
+                        binding.imgProfile.downloadImage(downloadUrl, makePlaceholder(requireContext()))
+
+                    }
+
+
+                }.addOnFailureListener {
+                    Toast.makeText(requireContext(), "NOOOO", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
 

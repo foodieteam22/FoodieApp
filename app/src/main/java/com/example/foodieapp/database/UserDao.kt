@@ -12,8 +12,14 @@ interface UserDao {
     @Delete
     suspend fun delete(userEntry: UserEntry)
 
-    @Query("SELECT *FROM user_table WHERE id = :id")
-    suspend fun getUser(id:Int) :  UserEntry
+   /* @Query("SELECT *FROM user_table WHERE id = :id")
+    suspend fun getUser(id:Int) :  UserEntry*/
+
+    @Query("SELECT * FROM user_table WHERE id=:id")
+    fun getUser(id: String):LiveData<List<UserEntry>>
+
+    @Query("SELECT * FROM user_table WHERE email=:email")
+    fun getUserByEmail(email: String):LiveData<List<UserEntry>>
 
     @Query("UPDATE user_table SET downloadUrl = :downloadUrl WHERE id =:id")
     suspend fun updatePhoto(downloadUrl: String?, id: Int)

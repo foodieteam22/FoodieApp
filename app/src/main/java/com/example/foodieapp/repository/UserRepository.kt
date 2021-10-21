@@ -1,7 +1,5 @@
 package com.example.foodieapp.repository
 
-import androidx.lifecycle.LiveData
-import com.example.foodieapp.database.RatingEntry
 import com.example.foodieapp.database.UserDao
 import com.example.foodieapp.database.UserEntry
 
@@ -12,7 +10,9 @@ class UserRepository(val userDao: UserDao) {
 
     suspend fun deleteUserRepo(userEntry: UserEntry)=userDao.delete(userEntry)
 
-    suspend fun getUser(id:Int)=userDao.getUser(id)
+    fun getUser(id: String)=userDao.getUser(id)
+
+    fun getUserEmail(email: String)=userDao.getUserByEmail(email)
 
 
 

@@ -28,6 +28,7 @@ class LoginFragment : Fragment() {
     private lateinit var viewModel: LoginViewModel
     private lateinit var storage: FirebaseStorage
     private  var userId: Int =0
+    private lateinit var user: UserEntry
 
 
 
@@ -48,6 +49,7 @@ class LoginFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
+
         _binding = FragmentLoginBinding.inflate(layoutInflater,container,false)
         val view = binding.root
         return view
@@ -63,14 +65,22 @@ class LoginFragment : Fragment() {
 
        if(currentUser != null){
 
-           val action = LoginFragmentDirections.actionLoginFragmentToProfileFragment()
-           Navigation.findNavController(view).navigate(action)
+
+           viewModel.getUserByEmail(currentUser.email.toString()).observe(viewLifecycleOwner){
+               user=it[0]
+               val action = LoginFragmentDirections.actionLoginFragmentToProfileFragment(user)
+               Navigation.findNavController(view).navigate(action)
+           }
+
+
        }
-        binding.btnSignIn.setOnClickListener { signIn(view)}
+        binding.btnSignIn.setOnClickListener {
+            signIn(view)
+
+        }
         binding.btnSignUp.setOnClickListener {
             signUp(view)
-            val action = LoginFragmentDirections.actionLoginFragmentToProfileFragment()
-            Navigation.findNavController(view).navigate(action)
+
 
         }
 
@@ -88,8 +98,12 @@ class LoginFragment : Fragment() {
             Toast.makeText(requireContext(),"Enter email and password!", Toast.LENGTH_LONG).show()
         }else{
             auth.signInWithEmailAndPassword(email,password).addOnSuccessListener {
-                val action = LoginFragmentDirections.actionLoginFragmentToProfileFragment()
-                Navigation.findNavController(view).navigate(action)
+                viewModel.getUserByEmail(email).observe(viewLifecycleOwner) {
+                    user = it[0]
+                    println(user.email)
+                    val action = LoginFragmentDirections.actionLoginFragmentToProfileFragment(user)
+                    Navigation.findNavController(view).navigate(action)
+                }
             }.addOnFailureListener {
 
                 Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_SHORT).show()
@@ -106,6 +120,7 @@ class LoginFragment : Fragment() {
         }else{
             auth.createUserWithEmailAndPassword(email,password).addOnSuccessListener {
                 saveUser()
+
             }.addOnFailureListener {
                 Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_SHORT).show()
             }
@@ -122,6 +137,8 @@ class LoginFragment : Fragment() {
             val email = auth.currentUser?.email.toString()
             val user = UserEntry(0,email,downloadUrl)
             viewModel.insertUser(user)
+            val action = LoginFragmentDirections.actionLoginFragmentToProfileFragment(user)
+            Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
             Toast.makeText(requireContext(), "Kaydedildi", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener {
             Toast.makeText(requireContext(), "NO", Toast.LENGTH_LONG).show()

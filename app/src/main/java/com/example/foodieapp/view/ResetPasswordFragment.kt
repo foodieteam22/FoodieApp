@@ -49,7 +49,6 @@ class ResetPasswordFragment : Fragment() {
                 binding.etEmailAddress.visibility= View.VISIBLE
                 binding.btnResetPassword.visibility = View.VISIBLE
                 binding.tvForgotPassword.visibility = View.VISIBLE
-                binding.btnUpdateEmail.visibility = View.GONE
                 binding.etnewPassword.visibility = View.GONE
                 binding.btnUpdatePassword.visibility = View.GONE
 
@@ -59,20 +58,11 @@ class ResetPasswordFragment : Fragment() {
                 binding.etEmailAddress.visibility= View.GONE
                 binding.btnResetPassword.visibility = View.GONE
                 binding.tvForgotPassword.text = "CHANGE PASSWORD?"
-                binding.btnUpdateEmail.visibility = View.GONE
                 binding.etnewPassword.visibility = View.VISIBLE
                 binding.btnUpdatePassword.visibility = View.VISIBLE
 
             }
-            if (info=="changeEmail"){
-                binding.etEmailAddress.visibility= View.VISIBLE
-                binding.btnResetPassword.visibility = View.GONE
-                binding.tvForgotPassword.text = "CHANGE EMAIL?"
-                binding.btnUpdateEmail.visibility = View.VISIBLE
-                binding.etnewPassword.visibility = View.GONE
-                binding.btnUpdatePassword.visibility = View.GONE
 
-            }
 
         }
 
@@ -109,21 +99,7 @@ class ResetPasswordFragment : Fragment() {
             val action = ResetPasswordFragmentDirections.actionResetPasswordFragmentToLoginFragment()
             Navigation.findNavController(view).navigate(action)
         }
-        binding.btnUpdateEmail.setOnClickListener {
-            val user = Firebase.auth.currentUser
-            val email =binding.etEmailAddress.text.toString()
 
-            user!!.updateEmail(email)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(requireContext(), "User email address updated.", Toast.LENGTH_SHORT).show()
-                    }
-                }.addOnFailureListener {
-                    Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_SHORT).show()
-                }
-            val action = ResetPasswordFragmentDirections.actionResetPasswordFragmentToLoginFragment()
-            Navigation.findNavController(view).navigate(action)
-        }
     }
 
 }
