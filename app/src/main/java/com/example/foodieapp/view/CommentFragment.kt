@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.foodieapp.database.CommentEntry
 import com.example.foodieapp.databinding.FragmentCommentsBinding
+import com.example.foodieapp.viewadapter.CommentsAdapter
 import com.example.foodieapp.viewmodel.CommentViewModel
 
 
@@ -37,10 +38,10 @@ class CommentFragment : Fragment() {
             }
         else if (!TextUtils.isEmpty(args.author))
             viewModel.getCommentsByAuthor(args.author!!).observe(viewLifecycleOwner) {
-                adapter=CommentsAdapter(it)
+                adapter= CommentsAdapter(it)
             }
         else {
-            adapter=CommentsAdapter(ArrayList<CommentEntry>())
+            adapter= CommentsAdapter(ArrayList<CommentEntry>())
         }
 
         binding.apply {
