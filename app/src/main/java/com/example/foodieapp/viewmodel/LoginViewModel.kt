@@ -33,5 +33,10 @@ class LoginViewModel(application: Application): AndroidViewModel (application){
     fun getUserByEmail(email: String): LiveData<List<UserEntry>> {
         return userRepo.getUserEmail(email)
     }
+    fun update(user: UserEntry){
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepo.updateUserRepo(user)
+        }
+    }
 
 }

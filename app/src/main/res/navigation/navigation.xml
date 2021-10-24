@@ -32,6 +32,9 @@
             android:name="info"
             app:argType="string"
             android:defaultValue="info" />
+        <action
+            android:id="@+id/action_resetPasswordFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"

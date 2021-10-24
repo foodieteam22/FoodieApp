@@ -34,13 +34,13 @@ class LoginFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true);
+
 
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        menu.clear()
+
     }
 
     override fun onCreateView(
@@ -70,6 +70,8 @@ class LoginFragment : Fragment() {
                user=it[0]
                val action = LoginFragmentDirections.actionLoginFragmentToProfileFragment(user)
                Navigation.findNavController(view).navigate(action)
+
+
            }
 
 
@@ -98,11 +100,19 @@ class LoginFragment : Fragment() {
             Toast.makeText(requireContext(),"Enter email and password!", Toast.LENGTH_LONG).show()
         }else{
             auth.signInWithEmailAndPassword(email,password).addOnSuccessListener {
+
                 viewModel.getUserByEmail(email).observe(viewLifecycleOwner) {
-                    user = it[0]
-                    println(user.email)
-                    val action = LoginFragmentDirections.actionLoginFragmentToProfileFragment(user)
-                    Navigation.findNavController(view).navigate(action)
+                    if(it.size!=0){
+                        user = it[0]
+                        val action = LoginFragmentDirections.actionLoginFragmentToProfileFragment(user)
+                        Navigation.findNavController(view).navigate(action)
+
+
+                    }
+                    else{
+                        saveUser()
+                    }
+
                 }
             }.addOnFailureListener {
 
@@ -139,15 +149,16 @@ class LoginFragment : Fragment() {
             viewModel.insertUser(user)
             val action = LoginFragmentDirections.actionLoginFragmentToProfileFragment(user)
             Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
-            Toast.makeText(requireContext(), "Kaydedildi", Toast.LENGTH_SHORT).show()
+
+
+
+
         }.addOnFailureListener {
-            Toast.makeText(requireContext(), "NO", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_LONG).show()
         }
 
 
     }
-
-
 
 
 

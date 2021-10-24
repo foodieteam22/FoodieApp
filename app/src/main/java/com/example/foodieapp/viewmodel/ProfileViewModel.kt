@@ -34,5 +34,11 @@ class ProfileViewModel(application: Application): AndroidViewModel(application) 
     fun getUserByEmail(email: String): LiveData<List<UserEntry>> {
         return userRepo.getUserEmail(email)
     }
+    fun updatePhoto(user: UserEntry){
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepo.updatePhoto(user)
+        }
+    }
+
 
 }

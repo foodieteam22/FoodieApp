@@ -21,12 +21,11 @@ interface UserDao {
     @Query("SELECT * FROM user_table WHERE email=:email")
     fun getUserByEmail(email: String):LiveData<List<UserEntry>>
 
-    @Query("UPDATE user_table SET downloadUrl = :downloadUrl WHERE id =:id")
-    suspend fun updatePhoto(downloadUrl: String?, id: Int)
-
     @Update
     suspend fun update(userEntry: UserEntry)
 
+    @Query("UPDATE user_table SET downloadUrl = :downloadUrl WHERE email =:email")
+    fun updatePhoto(downloadUrl: String?, email: String)
 
 
 }

@@ -8,6 +8,8 @@ class UserRepository(val userDao: UserDao) {
 
     suspend fun updateUserRepo(userEntry: UserEntry)=userDao.update(userEntry)
 
+    fun updatePhoto(userEntry: UserEntry)=userDao.updatePhoto(userEntry.downloadUrl, userEntry.email)
+
     suspend fun deleteUserRepo(userEntry: UserEntry)=userDao.delete(userEntry)
 
     fun getUser(id: String)=userDao.getUser(id)
