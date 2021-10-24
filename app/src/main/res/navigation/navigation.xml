@@ -91,4 +91,13 @@
             android:name="user"
             app:argType="com.example.foodieapp.database.UserEntry" />
     </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.foodieapp.view.MenuFragment"
+        android:label="MenuFragment" >
+        <argument
+            android:name="restaurantId"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
 </navigation>
