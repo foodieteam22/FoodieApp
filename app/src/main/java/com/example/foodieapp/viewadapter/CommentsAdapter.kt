@@ -1,4 +1,4 @@
-package com.example.foodieapp.view
+package com.example.foodieapp.viewadapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -23,17 +23,18 @@ class CommentsAdapter(private val commentsData: List<CommentEntry>): RecyclerVie
         val dateTextView = itemView.findViewById<TextView>(R.id.tvCommentDate)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentsAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
         // Inflate the custom layout
         val contactView = inflater.inflate(R.layout.comment_row_layout, parent, false)
         // Return a new holder instance
         return ViewHolder(contactView)
+
     }
 
     // Involves populating data into the item through holder
-    override fun onBindViewHolder(viewHolder: CommentsAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         // Get the data model based on position
         val contact: CommentEntry = commentsData.get(position)
         // Set item views based on your views and data model

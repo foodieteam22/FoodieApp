@@ -11,4 +11,8 @@
     <color name="navigationBarColor">#181A1C</color>
     <color name="ratingBarNormal">#FFEDF0F1</color>
     <color name="ratingBarActivated">#FFF6E339</color>
+    <color name="cardbackgroundColour">#FFFFFFFF</color>
+    <color name="green">#FF00BF00</color>
+    <color name="red">#FFF8002C</color>
+    <color name="orange">#FFFC8D00</color>
 </resources>

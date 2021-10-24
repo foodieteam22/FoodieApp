@@ -14,6 +14,12 @@
         <action
             android:id="@+id/action_loginFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_commentFragment"
+            app:destination="@id/commentFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_restaurantFragment"
+            app:destination="@id/restaurantFragment" />
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
@@ -26,6 +32,9 @@
             android:name="info"
             app:argType="string"
             android:defaultValue="info" />
+        <action
+            android:id="@+id/action_resetPasswordFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -40,6 +49,12 @@
         <action
             android:id="@+id/action_profileFragment_to_commentFragment"
             app:destination="@id/commentFragment" />
+        <argument
+            android:name="user"
+            app:argType="com.example.foodieapp.database.UserEntry" />
+        <action
+            android:id="@+id/action_profileFragment_self"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/commentFragment"
@@ -67,5 +82,22 @@
         <argument
             android:name="author"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/restaurantFragment"
+        android:name="com.example.foodieapp.view.RestaurantFragment"
+        android:label="RestaurantFragment" >
+        <argument
+            android:name="user"
+            app:argType="com.example.foodieapp.database.UserEntry" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.foodieapp.view.MenuFragment"
+        android:label="MenuFragment" >
+        <argument
+            android:name="restaurantId"
+            app:argType="integer"
+            android:defaultValue="1" />
     </fragment>
 </navigation>

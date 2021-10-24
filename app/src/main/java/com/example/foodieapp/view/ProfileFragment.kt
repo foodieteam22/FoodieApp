@@ -2,67 +2,100 @@ package com.example.foodieapp.view
 
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.foodieapp.R
-import com.example.foodieapp.database.RestaurantEntry
-import com.example.foodieapp.databinding.FragmentLoginBinding
+import com.example.foodieapp.database.UserEntry
 import com.example.foodieapp.databinding.FragmentProfileBinding
+import com.example.foodieapp.utils.downloadImage
+import com.example.foodieapp.utils.makePlaceholder
+import com.example.foodieapp.viewmodel.ProfileViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 
 
 class ProfileFragment : Fragment() {
+   private val viewModel: ProfileViewModel by viewModels()
+    private lateinit var storage: FirebaseStorage
     private lateinit var auth: FirebaseAuth
     private val binding get() = _binding!!
     private var _binding: FragmentProfileBinding? = null
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
     private  lateinit var permissonLauncher : ActivityResultLauncher<String>
     var selectedPicture : Uri? = null
+    private lateinit var user: UserEntry
+    private lateinit var args: ProfileFragmentArgs
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true);
 
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        val actionBar = ActionBar.DISPLAY_SHOW_TITLE
+        args = ProfileFragmentArgs.fromBundle(requireArguments())
         _binding = FragmentProfileBinding.inflate(layoutInflater,container,false)
         val view = binding.root
+
         return view
 
-
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.profile_menu, menu)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if (item.itemId==R.id.logout) {
+            auth=Firebase.auth
+            auth.signOut()
+            val action = ProfileFragmentDirections.actionProfileFragmentToLoginFragment()
+            Navigation.findNavController(requireActivity(),R.id.fragmentContainerView).navigate(action)
+
+        }
+
+
+        return super.onOptionsItemSelected(item)
+    }
+
+   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        registerLauncher()
-        auth = Firebase.auth
+
+         binding.tvUserName.text = args.user.email
+         binding.imgProfile.downloadImage(args.user.downloadUrl, makePlaceholder(requireContext()))
+         registerLauncher()
+
+
+
 
         binding.btnchangePassword.setOnClickListener {
             val action = ProfileFragmentDirections.actionProfileFragmentToResetPasswordFragment("changePassword")
-            Navigation.findNavController(view).navigate(action)
-        }
-        binding.btnchangeEmail.setOnClickListener {
-            val action = ProfileFragmentDirections.actionProfileFragmentToResetPasswordFragment("changeEmail")
             Navigation.findNavController(view).navigate(action)
         }
         binding.btnLogout.setOnClickListener {
@@ -72,31 +105,48 @@ class ProfileFragment : Fragment() {
             val action = ProfileFragmentDirections.actionProfileFragmentToLoginFragment()
             Navigation.findNavController(view).navigate(action)
         }
-
-        binding.imgProfile.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(),android.Manifest.permission.READ_EXTERNAL_STORAGE)){
-                    Snackbar.make(view, "Permission needed for gallery", Snackbar.LENGTH_INDEFINITE).setAction("Give Permission") {
-                        permissonLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
-                    }.show()
-                }else{
-
-                    permissonLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
-
-                }
-
-            } else{
-                val intentToGallery= Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                activityResultLauncher.launch(intentToGallery)
+       binding.imgProfile.setOnClickListener {
+           selectImage(view)
 
 
-            }
-        }
+
+
+
+
+       }
+
+
 
         binding.btnRating.setOnClickListener {
             val action = ProfileFragmentDirections.actionProfileFragmentToCommentFragment(binding.tvUserName.text.toString(),0)
             Navigation.findNavController(view).navigate(action)
+
         }
+
+    }
+    fun selectImage(view: View){
+        if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(),android.Manifest.permission.READ_EXTERNAL_STORAGE)){
+                Snackbar.make(view, "Permission needed for gallery", Snackbar.LENGTH_INDEFINITE).setAction("Give Permission") {
+                    permissonLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                }.show()
+            }else{
+
+                permissonLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+
+            }
+
+        } else{
+            val intentToGallery= Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            activityResultLauncher.launch(intentToGallery)
+
+
+
+        }
+
+
+
+
 
     }
 
@@ -108,20 +158,47 @@ class ProfileFragment : Fragment() {
                     selectedPicture = intentFromResult.data
                     selectedPicture?.let {
                         binding.imgProfile.setImageURI(it)
+                        updateUser()
+                        }
                     }
                 }
-            }
         }
 
         permissonLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()){ result->
             if(result){
                 val intentToGallery= Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
                 activityResultLauncher.launch(intentToGallery)
+
             }else{
                 Toast.makeText(requireContext(), "Permisson needed!", Toast.LENGTH_SHORT).show()
             }
         }
 
+    }
+    private fun updateUser(){
+        if (selectedPicture!=null){
+            storage = Firebase.storage
+            auth = Firebase.auth
+            val reference = storage.reference
+            val imageReference = reference.child("images").child(auth.currentUser?.uid.toString())
+            imageReference.putFile(selectedPicture!!).addOnSuccessListener{
+                val uploadPictureReference =
+                    storage.reference.child("images").child(auth.currentUser?.uid.toString())
+                uploadPictureReference.downloadUrl.addOnSuccessListener {
+                    val downloadUrl = it.toString()
+                        val user = UserEntry(
+                            args.user.id,
+                            args.user.email,
+                            downloadUrl
+                        )
+                         viewModel.updatePhoto(user)
+                         Toast.makeText(requireContext(), "güncellendi", Toast.LENGTH_SHORT).show()
+
+                }.addOnFailureListener {
+                    Toast.makeText(requireContext(), "NOOOO", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
 

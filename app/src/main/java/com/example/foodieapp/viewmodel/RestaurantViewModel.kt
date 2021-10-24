@@ -40,5 +40,9 @@ class RestaurantViewModel(application: Application):AndroidViewModel(application
         }
     }
 
+    fun getAllRest():LiveData<List<RestaurantEntry>>{
+        return restRepo.getAllRestaurantRepo()
+    }
+
 
 }
