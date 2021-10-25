@@ -13,6 +13,7 @@
     <string name="resturant_detail1">Çocuk Oyun Alanı</string>
     <string name="resturant_detail2">Açık Alan</string>
     <string name="resturant_detail3">Vegan</string>
+    <string name="resturant_search">Restorant Ara...</string>
     <string name="menu_title">Menu</string>
     <string name="menu_base_url">https://raw.githubusercontent.com</string>
     <string name="menu_url">/fgamzeatay/foodieJson/main/Menu-</string>
