@@ -12,5 +12,5 @@ class RestaurantFeatureRepository(val restaurantFeatureDao: RestaurantFeatureDao
     suspend fun deleteRestaurantFeatureRepo(restaurantFeatureEntry: RestaurantFeatureEntry)=restaurantFeatureDao.delete(restaurantFeatureEntry)
 
 
-    fun getRestaurantFeatureRepo(id:String)=restaurantFeatureDao.getRestaurantFeatures(id)
+    fun getRestaurantFeatureRepo(id:Int)=restaurantFeatureDao.getRestaurantFeatures(id)
 }

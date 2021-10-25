@@ -18,7 +18,7 @@ interface RestaurantFeatureDao {
 
 
     @Query("SELECT * FROM restaurant_feature_table WHERE restaurantId=:restaurantId")
-    fun getRestaurantFeatures(restaurantId: String): LiveData<List<RestaurantFeatureEntry>>
+    fun getRestaurantFeatures(restaurantId: Int): LiveData<List<RestaurantFeatureEntry>>
 
 
 }

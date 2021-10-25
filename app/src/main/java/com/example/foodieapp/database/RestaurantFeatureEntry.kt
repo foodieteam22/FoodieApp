@@ -9,6 +9,7 @@ import kotlinx.parcelize.Parcelize
 @Entity(tableName = "restaurant_feature_table")
 data class RestaurantFeatureEntry(
     @PrimaryKey(autoGenerate = true)
+    var id :Int,
     var restaurantId :Int,
     var hasFeature:Boolean,
     var FeatureDescription:String

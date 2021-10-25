@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.example.foodieapp.database.CommentEntry
 import com.example.foodieapp.database.RestaurantDatabase
 import com.example.foodieapp.database.RestaurantEntry
 import com.example.foodieapp.database.RestaurantFeatureEntry
@@ -21,7 +22,7 @@ class RestaurantDetailViewModel (application: Application) : AndroidViewModel(ap
         restFeatureRepo = RestaurantFeatureRepository(restFeatureDao)
 
     }
-    fun getRestFetureById(restaurantId: String):LiveData<List<RestaurantFeatureEntry>>{
+    fun getRestFetureById(restaurantId: Int):LiveData<List<RestaurantFeatureEntry>>{
         return restFeatureRepo.getRestaurantFeatureRepo(restaurantId)
     }
 
