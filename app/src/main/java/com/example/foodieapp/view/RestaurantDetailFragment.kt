@@ -6,50 +6,72 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.RecyclerView
 import androidx.navigation.fragment.findNavController
 import com.example.foodieapp.R
 import com.example.foodieapp.database.CommentEntry
 import com.example.foodieapp.database.RestaurantFeatureEntry
+import com.example.foodieapp.databinding.FragmentCommentsBinding
 import com.example.foodieapp.databinding.FragmentLoginBinding
 import com.example.foodieapp.databinding.FragmentRatingBinding
 import com.example.foodieapp.databinding.FragmentRestaurantDetailBinding
 import com.example.foodieapp.viewadapter.CommentsAdapter
 import com.example.foodieapp.viewadapter.RestaurantFeatureEntryAdapter
+import com.example.foodieapp.viewmodel.LoginViewModel
 import com.example.foodieapp.viewmodel.RestaurantDetailViewModel
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class RestaurantDetailFragment : Fragment() {
 
-    private val binding get() = _binding!!
+    //private val binding get() = _binding!!
     private var _binding: FragmentRestaurantDetailBinding? = null
     private val viewModel: RestaurantDetailViewModel by viewModels()
     private lateinit var adapter: RestaurantFeatureEntryAdapter
-
-
-
+    private lateinit var featureList: ArrayList<RestaurantFeatureEntry>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentRestaurantDetailBinding.inflate(inflater)
-
-        binding.lifecycleOwner = this
+        val binding = FragmentRestaurantDetailBinding.inflate(inflater)
         binding.viewModel = viewModel
-        insertRestaurantFeature(1,true,"Oyun Parkı")
+        binding.lifecycleOwner = this
+
+        featureList = arrayListOf<RestaurantFeatureEntry>()
+        featureList.add(RestaurantFeatureEntry(
+            0,1,true,"Oyun Parkı"))
+        featureList.add(RestaurantFeatureEntry(
+            0,1,true,"Oyun Parkı1"))
+        featureList.add(RestaurantFeatureEntry(
+            0,1,true,"Oyun Parkı2"))
+        featureList.add(RestaurantFeatureEntry(
+            0,1,true,"Oyun Parkı3"))
+        featureList.add(RestaurantFeatureEntry(
+            0,1,true,"Oyun Parkı4"))
 
 
-        viewModel.getRestFetureById(1).observe(viewLifecycleOwner) {
-            adapter= RestaurantFeatureEntryAdapter(it)
-        }
+        adapter= RestaurantFeatureEntryAdapter(featureList)
+
         binding.apply {
 
             binding.restaurantFeatureRecyclerView.adapter = adapter
 
         }
+        val view = binding.root
+        return view
 
-        return binding.root;
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        /*viewModel.getRestFetureById(1).observe(viewLifecycleOwner) {
+            adapter= RestaurantFeatureEntryAdapter(it)
+        }*/
 
     }
 

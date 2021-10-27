@@ -1,6 +1,7 @@
 package com.example.foodieapp.viewadapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodieapp.database.CommentEntry
 import com.example.foodieapp.databinding.RowRestaurantFeatureBinding
@@ -27,6 +28,7 @@ class RestaurantFeatureEntryAdapter (private val featuresData: List<RestaurantFe
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         val current = featuresData.get(position)
         holder.bind(current)
         //holder.binding.tvExample.text = list[position].text
