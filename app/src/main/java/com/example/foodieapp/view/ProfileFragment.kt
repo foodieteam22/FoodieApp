@@ -57,7 +57,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val actionBar = ActionBar.DISPLAY_SHOW_TITLE
+       // val actionBar = ActionBar.DISPLAY_SHOW_TITLE
         args = ProfileFragmentArgs.fromBundle(requireArguments())
         _binding = FragmentProfileBinding.inflate(layoutInflater,container,false)
         val view = binding.root
@@ -122,6 +122,10 @@ class ProfileFragment : Fragment() {
             Navigation.findNavController(view).navigate(action)
 
         }
+       binding.btnHelp.setOnClickListener {
+           val action = ProfileFragmentDirections.actionProfileFragmentToHelpFragment()
+           Navigation.findNavController(view).navigate(action)
+       }
 
     }
     fun selectImage(view: View){
