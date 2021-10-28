@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.ReservationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".view.ReservationsFragment">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="88dp"
+            android:layout_height="31dp"
+            android:layout_marginVertical="50dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/foodie" />
+
+        <TextView
+            android:id="@+id/etRestaurantName"
+            android:layout_width="286dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/abeezee"
+            android:text="İzmir Sakız Restoran"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/imgItem"
+            android:layout_width="286dp"
+            android:layout_height="100dp"
+            android:layout_weight="2"
+            android:background="@drawable/resturant_demo_image"
+            android:contentDescription="resturant_demo_image"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/etRestaurantDensityText"
+            android:layout_width="286dp"
+            android:layout_height="10dp"
+            android:layout_marginVertical="5dp"
+            android:layout_weight="2"
+            android:fontFamily="@font/abeezee"
+            android:text="Yoğunluk"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+        />
+
+
+        <ProgressBar
+            android:id="@+id/progressBarHorizontal"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="286dp"
+            android:layout_height="2dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="5dp"
+            android:layout_weight="2"
+            android:indeterminate="false"
+            android:max="100"
+            android:minWidth="200dp"
+            android:minHeight="50dp"
+            android:progress="33"
+            android:progressBackgroundTint="@color/black"
+            android:progressTint = "@color/orange"/>
+        <TextView
+            android:id="@+id/etRestaurantDensityValue"
+            android:layout_width="286dp"
+            android:layout_height="8dp"
+            android:layout_marginVertical="10dp"
+            android:layout_weight="2"
+            android:fontFamily="@font/abeezee"
+            android:text="Restoran %34 Dolu"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+            />
+        <Spinner
+            android:id="@+id/spinnerDesk"
+            android:layout_width="286dp"
+            android:layout_height="8dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/black"
+            android:layout_weight="2"/>
+
+        <Spinner
+            android:id="@+id/spinnerPersonCount"
+            android:layout_width="286dp"
+            android:layout_height="8dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/black"
+            android:tooltipText="@color/black"
+            android:layout_weight="2"/>
+
+        <Spinner
+            android:id="@+id/spinnerHour"
+            android:layout_width="286dp"
+            android:layout_height="8dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/black"
+            android:layout_weight="2"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal"
+            android:padding="0dp"
+            android:layout_weight="1">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ImgBooking"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/bookingicon"
+                app:civ_border_color="#ffffff"
+                app:civ_border_width="3dp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imgChangePassword"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="120dp"
+                android:src="@drawable/changepasswordicon"
+                app:civ_border_width="3dp"
+                app:civ_border_color="#ffffff"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            >
+
+            <Button
+                android:id="@+id/ShowDesk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="sans-serif-medium"
+                android:inputType="text"
+                android:text="Masa Düzeni"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/ShowMenu"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="80dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="sans-serif-medium"
+                android:inputType="text"
+                android:text="Menü"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="10dp"
+            android:layout_weight="2"
+            android:textColor="@color/white"
+            android:background="@drawable/button_selector"
+            android:onClick="complete"
+            android:text="Tamamla"
+            tools:ignore="OnClick" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
