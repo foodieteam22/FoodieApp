@@ -39,7 +39,8 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.foodieapp.view.ProfileFragment"
-        android:label="ProfileFragment" >
+        android:label="ProfileFragment"
+        app:startDestination="@id/action_profileFragment_to_helpFragment">
         <action
             android:id="@+id/action_profileFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -55,6 +56,9 @@
         <action
             android:id="@+id/action_profileFragment_self"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_helpFragment"
+            app:destination="@id/helpFragment" />
     </fragment>
     <fragment
         android:id="@+id/commentFragment"
