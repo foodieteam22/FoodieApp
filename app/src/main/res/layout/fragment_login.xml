@@ -34,7 +34,7 @@
             android:layout_marginBottom="70dp"
             android:layout_weight="1"
             android:fontFamily="@font/abeezee"
-            android:text="WELCOME TO FOODİE "
+            android:text="WELCOME TO FOODIE "
             android:textAlignment="center"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -104,7 +104,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:onClick="signUp"
-            android:text="SİGN UP"
+            android:text="SIGN UP"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
