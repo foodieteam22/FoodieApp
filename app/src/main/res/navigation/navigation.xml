@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/reservationsFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -106,11 +105,11 @@
             android:defaultValue="1" />
     </fragment>
     <fragment
-        android:id="@+id/helpFragment"
-        android:name="com.example.foodieapp.view.HelpFragment"
-        android:label="HelpFragment" />
-    <fragment
-        android:id="@+id/restaurantDetailFragment"
-        android:name="com.example.foodieapp.view.RestaurantDetailFragment"
-        android:label="RestaurantDetailFragment" />
+        android:id="@+id/reservationsFragment"
+        android:name="com.example.foodieapp.view.ReservationsFragment"
+        android:label="ReservationsFragment" >
+        <argument
+            android:name="user"
+            app:argType="com.example.foodieapp.database.UserEntry" />
+    </fragment>
 </navigation>
