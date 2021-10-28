@@ -15,6 +15,7 @@ class RestaurantFeatureEntryAdapter (private val featuresData: List<RestaurantFe
     {
         fun bind (restaurantFeatureEntry: RestaurantFeatureEntry) {
             binding.restaurantFeatureEntry = restaurantFeatureEntry
+
             binding.executePendingBindings()
         }
     }
@@ -30,6 +31,8 @@ class RestaurantFeatureEntryAdapter (private val featuresData: List<RestaurantFe
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val current = featuresData.get(position)
+
+
         holder.bind(current)
         //holder.binding.tvExample.text = list[position].text
     }

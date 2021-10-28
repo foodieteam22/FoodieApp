@@ -44,7 +44,7 @@ class RestaurantDetailFragment : Fragment() {
 
         featureList = arrayListOf<RestaurantFeatureEntry>()
         featureList.add(RestaurantFeatureEntry(
-            0,1,true,"Oyun Parkı"))
+            0,1,false,"Oyun Parkı"))
         featureList.add(RestaurantFeatureEntry(
             0,1,true,"Oyun Parkı1"))
         featureList.add(RestaurantFeatureEntry(
@@ -53,7 +53,21 @@ class RestaurantDetailFragment : Fragment() {
             0,1,true,"Oyun Parkı3"))
         featureList.add(RestaurantFeatureEntry(
             0,1,true,"Oyun Parkı4"))
+        featureList.add(RestaurantFeatureEntry(
+            0,1,true,"Oyun Parkı4"))
 
+        featureList.add(RestaurantFeatureEntry(
+            0,1,false,"Oyun Parkı4"))
+
+        featureList.add(RestaurantFeatureEntry(
+            0,1,false,"Oyun Parkı4"))
+
+        featureList.add(RestaurantFeatureEntry(
+            0,1,true,"Oyun Parkı4"))
+        featureList.add(RestaurantFeatureEntry(
+            0,1,true,"Oyun Parkı4"))
+        featureList.add(RestaurantFeatureEntry(
+            0,1,true,"Oyun Parkı4"))
 
         adapter= RestaurantFeatureEntryAdapter(featureList)
 
