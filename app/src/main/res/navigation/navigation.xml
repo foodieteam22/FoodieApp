@@ -112,4 +112,8 @@
             android:name="user"
             app:argType="com.example.foodieapp.database.UserEntry" />
     </fragment>
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.example.foodieapp.view.HelpFragment"
+        android:label="HelpFragment" />
 </navigation>
