@@ -66,7 +66,6 @@ class ReservationsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     fun complete(view: View){
 
-
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
