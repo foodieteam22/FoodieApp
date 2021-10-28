@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/reservationsFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -99,5 +99,13 @@
             android:name="restaurantId"
             app:argType="integer"
             android:defaultValue="1" />
+    </fragment>
+    <fragment
+        android:id="@+id/reservationsFragment"
+        android:name="com.example.foodieapp.view.ReservationsFragment"
+        android:label="ReservationsFragment" >
+        <argument
+            android:name="user"
+            app:argType="com.example.foodieapp.database.UserEntry" />
     </fragment>
 </navigation>
