@@ -109,4 +109,8 @@
         android:id="@+id/helpFragment"
         android:name="com.example.foodieapp.view.HelpFragment"
         android:label="HelpFragment" />
+    <fragment
+        android:id="@+id/restaurantDetailFragment"
+        android:name="com.example.foodieapp.view.RestaurantDetailFragment"
+        android:label="RestaurantDetailFragment" />
 </navigation>
