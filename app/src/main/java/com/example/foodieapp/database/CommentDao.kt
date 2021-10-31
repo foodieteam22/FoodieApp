@@ -22,4 +22,7 @@ interface CommentDao {
     @Query("SELECT * FROM comments_table WHERE restaurantId=:restaurantId ORDER BY timestamp DESC")
     fun getRestaurantComments(restaurantId: Int):LiveData<List<CommentEntry>>
 
+    @Query("SELECT * FROM comments_table")
+    fun getAllComments():LiveData<List<CommentEntry>>
+
 }

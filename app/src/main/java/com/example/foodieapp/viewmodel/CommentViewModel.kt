@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.foodieapp.database.CommentEntry
 import com.example.foodieapp.database.RestaurantDatabase
+import com.example.foodieapp.database.RestaurantEntry
 import com.example.foodieapp.repository.CommentRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,9 +15,13 @@ class CommentViewModel(application: Application):AndroidViewModel(application)
 {
     private val commentDao = RestaurantDatabase.getDatabase(application).commentDao()
     private val commentRepo :CommentRepository
+    val getAllComments:LiveData<List<CommentEntry>>
+
 
     init {
         commentRepo = CommentRepository(commentDao)
+        getAllComments =commentRepo.getAllComments()
+
     }
     fun getCommentsByAuthor(author: String):LiveData<List<CommentEntry>>{
         return commentRepo.getCommentsByAuthor(author)
@@ -24,6 +29,10 @@ class CommentViewModel(application: Application):AndroidViewModel(application)
 
     fun getRestaurantComments(restaurantId: Int):LiveData<List<CommentEntry>>{
         return commentRepo.getRestaurantComments(restaurantId)
+    }
+
+    fun getAllComments():LiveData<List<CommentEntry>>{
+        return commentRepo.getAllComments()
     }
 
     fun insertComment(commentEntry: CommentEntry){

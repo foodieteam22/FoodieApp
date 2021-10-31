@@ -8,11 +8,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.NonNull
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.room.util.StringUtil
 import com.example.foodieapp.database.CommentEntry
 import com.example.foodieapp.database.RatingEntry
 import com.example.foodieapp.database.RestaurantEntry
@@ -40,11 +43,7 @@ class RatingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentRatingBinding.inflate(layoutInflater,container,false)
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
-
-
-
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         return binding.root
     }
 
@@ -52,7 +51,11 @@ class RatingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val args = RatingFragmentArgs.fromBundle(requireArguments())
-        binding.tvRatingRestaurantName.setText(args.restaurantInfo.restaurantName)
+        var restaurantInfo=args.restaurantInfo
+
+        if(restaurantInfo == null)
+            restaurantInfo= RestaurantEntry(1,"Restoran Adı", 90876457);
+        binding.tvRatingRestaurantName.setText(restaurantInfo.restaurantName)
 
         binding.ratingBarHygiene.numStars=5
         binding.ratingBarHygiene.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
@@ -74,22 +77,25 @@ class RatingFragment : Fragment() {
 
         binding.btnRatingOk.setOnClickListener {
 
-            insertRating(args.restaurantInfo.id)
-
-            insertComment(args.restaurantInfo.id, "Gamze",binding)
-
-            //val action = RatingFragmentDirections.actionRatingFragmentToProfileFragment()
-            //Navigation.findNavController(view).navigate(action)
+            if(avgRate.equals(0.0F)) {
+                Toast.makeText(requireContext(),"Oy alanları boş geçilemez", Toast.LENGTH_LONG).show();
+            }else{
+                insertRating(restaurantInfo.id)
+                insertComment(restaurantInfo.id, "Gamze", binding)
+                val action = RatingFragmentDirections.actionRatingFragmentToCommentFragment("Gamze", 1)
+                Navigation.findNavController(view).navigate(action)
+            }
 
         }
     }
 
 
     private fun insertComment(restaurantId: Int,author:String, binding: FragmentRatingBinding) {
+        val description = binding.tvRatingCommentText.text.toString()
         val commentEntry = CommentEntry(
             0,
             restaurantId,
-            binding.tvRatingCommentText.text.toString(),
+            description,
             author,
             System.currentTimeMillis() / 1000,
             avgRate

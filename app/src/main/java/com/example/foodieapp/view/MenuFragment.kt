@@ -20,7 +20,6 @@ import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-private const val ARG_PARAM1 = "restaurantId"
 
 
 class MenuFragment : Fragment() {
@@ -35,15 +34,13 @@ class MenuFragment : Fragment() {
     ): View? {
 
        _binding = FragmentMenuBinding.inflate(layoutInflater,container,false)
-        val supportActionBar: ActionBar? = (requireActivity() as AppCompatActivity).supportActionBar
-        if (supportActionBar != null) supportActionBar.hide()
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         return binding.root
-
-
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         parseJSON()
     }
 
@@ -58,13 +55,13 @@ class MenuFragment : Fragment() {
 
             .build()
 
-        // Create Service
         val service = retrofit.create(MenuService::class.java)
         CoroutineScope(Dispatchers.IO).launch {
 
-            var response = service.getMenu(String.format("/fgamzeatay/foodieJson/main/Menu-%d.json",restaurantId))
+            val menuId = (0..4).random()
+            val response = service.getMenu(String.format(getString(R.string.menu_url),menuId))
 
-            response!!.enqueue(object : Callback<List<MenuModel>> {
+            response.enqueue(object : Callback<List<MenuModel>> {
                 override fun onResponse(call: Call<List<MenuModel>>, response: Response<List<MenuModel>>)
                 {
                     if (response.code() == 200) {
