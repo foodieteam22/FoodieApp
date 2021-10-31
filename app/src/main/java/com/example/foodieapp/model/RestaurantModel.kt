@@ -10,9 +10,6 @@ data class RestaurantModel(
     @SerializedName("name")
     val name: String,
 
-    @SerializedName("location")
-    val location: String,
 
-    @SerializedName("detail-items")
-    val detail : RestaurantDetailModel
+
 )

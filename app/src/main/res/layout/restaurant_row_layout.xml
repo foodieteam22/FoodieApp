@@ -50,8 +50,9 @@
                 android:layout_marginTop="10dp"
                 android:progress="40"
                 android:max="100"
-                android:progressBackgroundTint="@color/white"
-                android:progressTint = "@drawable/button_selector"/>
+                android:progressBackgroundTint="@color/black"
+                android:progressTint = "@color/orange"/>
+
             <TextView
                 android:layout_width="30dp"
                 android:layout_height="20dp"
