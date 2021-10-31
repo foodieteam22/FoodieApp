@@ -18,6 +18,11 @@ class LoginViewModel(application: Application): AndroidViewModel (application){
 
     private val userDao = RestaurantDatabase.getDatabase(application).userDao()
     private val userRepo : UserRepository
+    private val _userLiveData = MutableLiveData<List<UserEntry>>()
+    val  userLiveData: LiveData<List<UserEntry>>
+    get() = _userLiveData
+
+
 
 
     init {
@@ -36,6 +41,11 @@ class LoginViewModel(application: Application): AndroidViewModel (application){
     fun update(user: UserEntry){
         viewModelScope.launch(Dispatchers.IO) {
             userRepo.updateUserRepo(user)
+        }
+    }
+    fun getAll(){
+        viewModelScope.launch(Dispatchers.IO) {
+            _userLiveData.value=userRepo.getAllUser()
         }
     }
 

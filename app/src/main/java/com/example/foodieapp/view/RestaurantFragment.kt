@@ -44,7 +44,7 @@ class RestaurantFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        parseJSON()
+       // parseJSON()
     }
 
 

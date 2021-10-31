@@ -30,6 +30,7 @@ import org.junit.runner.RunWith
         ratingDao = db.ratingDao()
 
 
+
     }
 
     @After

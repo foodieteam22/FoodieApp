@@ -11,6 +11,8 @@ import com.example.foodieapp.databinding.FragmentLoginBinding
 import com.example.foodieapp.databinding.FragmentRatingBinding
 import com.example.foodieapp.databinding.FragmentRestaurantDetailBinding
 import com.example.foodieapp.databinding.FragmentTableSchemeBinding
+import com.example.foodieapp.utils.downloadImage
+import com.example.foodieapp.utils.makePlaceholder
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -18,6 +20,7 @@ import com.google.firebase.ktx.Firebase
 class TableSchemeFragment : Fragment() {
 
     private var binding: FragmentTableSchemeBinding? = null
+    private lateinit var args: TableSchemeFragmentArgs
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +31,7 @@ class TableSchemeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        args = TableSchemeFragmentArgs.fromBundle(requireArguments())
         // Inflate the layout for this fragment
 
 
@@ -43,8 +47,7 @@ class TableSchemeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val args = TableSchemeFragmentArgs.fromBundle(requireArguments())
-        binding?.imgTableScheme?.setImageURI(Uri.parse(args.tableSchemeUrl))
+        binding?.imgTableScheme?.downloadImage(args.tableSchemeUrl, makePlaceholder(requireContext()))
         binding.apply {
 
         }
