@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/restaurantDetailFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -70,8 +70,7 @@
         <argument
             android:name="author"
             app:argType="string"
-            app:nullable="true"
-            android:defaultValue="Gamze" />
+            app:nullable="true" />
         <argument
             android:name="restaurantId"
             app:argType="integer"
@@ -83,17 +82,10 @@
         android:label="RatingFragment" >
         <argument
             android:name="restaurantInfo"
-            app:argType="com.example.foodieapp.database.RestaurantEntry"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:argType="com.example.foodieapp.database.RestaurantEntry" />
         <argument
             android:name="author"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue='""' />
-        <action
-            android:id="@+id/action_ratingFragment_to_commentFragment"
-            app:destination="@id/commentFragment" />
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/restaurantFragment"
@@ -124,4 +116,30 @@
         android:id="@+id/helpFragment"
         android:name="com.example.foodieapp.view.HelpFragment"
         android:label="HelpFragment" />
+
+    <fragment
+        android:id="@+id/restaurantDetailFragment"
+        android:name="com.example.foodieapp.view.RestaurantDetailFragment"
+        android:label="RestaurantDetailFragment" >
+
+        <action
+            android:id="@+id/action_detailFragment_to_commentFragment"
+            app:destination="@id/commentFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_reservationFragment"
+            app:destination="@id/reservationsFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_tableSchemeFragment"
+            app:destination="@id/tableSchemeFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/tableSchemeFragment"
+        android:name="com.example.foodieapp.view.TableSchemeFragment"
+        android:label="TableSchemeFragment" >
+        <argument
+            android:name="table_scheme_url"
+            app:argType="string" />
+
+    </fragment>
 </navigation>
