@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.foodieapp.R
 import com.example.foodieapp.database.CommentEntry
 import com.example.foodieapp.database.RestaurantFeatureEntry
+import com.example.foodieapp.database.UserEntry
 import com.example.foodieapp.databinding.FragmentCommentsBinding
 import com.example.foodieapp.databinding.FragmentLoginBinding
 import com.example.foodieapp.databinding.FragmentRatingBinding
@@ -32,7 +33,7 @@ class RestaurantDetailFragment : Fragment() {
     private val viewModel: RestaurantDetailViewModel by viewModels()
     private lateinit var adapter: RestaurantFeatureEntryAdapter
     private lateinit var featureList: ArrayList<RestaurantFeatureEntry>
-
+    private lateinit var user: UserEntry
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -74,11 +75,30 @@ class RestaurantDetailFragment : Fragment() {
         binding.apply {
 
             binding.restaurantFeatureRecyclerView.adapter = adapter
+            tvComments.setOnClickListener{
+                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment("Serkan",1)
+                Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
+
+            }
+            val url = "https://www.gstatic.com/webp/gallery/1.jpg"
+            tvTableScheme.setOnClickListener{
+                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToTableSchemeFragment(url)
+                Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
+            }
+            floatingActionButtonAddReservation.setOnClickListener{
+                onAddReservationClick()
+            }
 
         }
         val view = binding.root
         return view
 
+    }
+    fun onAddReservationClick()
+    {
+        val user :UserEntry = UserEntry(1,"ss","ss")
+        val action = RestaurantDetailFragmentDirections.actionDetailFragmentToReservationFragment(user)
+        Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
