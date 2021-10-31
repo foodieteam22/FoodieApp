@@ -68,7 +68,7 @@ class LoginFragment : Fragment() {
 
            viewModel.getUserByEmail(currentUser.email.toString()).observe(viewLifecycleOwner){
                user=it[0]
-               val action = LoginFragmentDirections.actionLoginFragmentToProfileFragment(user)
+               val action = LoginFragmentDirections.actionLoginFragmentToRestaurantFragment(user)
                Navigation.findNavController(view).navigate(action)
 
 
@@ -104,7 +104,7 @@ class LoginFragment : Fragment() {
                 viewModel.getUserByEmail(email).observe(viewLifecycleOwner) {
                     if(it.size!=0){
                         user = it[0]
-                        val action = LoginFragmentDirections.actionLoginFragmentToProfileFragment(user)
+                        val action = LoginFragmentDirections.actionLoginFragmentToRestaurantFragment(user)
                         Navigation.findNavController(view).navigate(action)
 
 
@@ -147,7 +147,7 @@ class LoginFragment : Fragment() {
             val email = auth.currentUser?.email.toString()
             val user = UserEntry(0,email,downloadUrl)
             viewModel.insertUser(user)
-            val action = LoginFragmentDirections.actionLoginFragmentToProfileFragment(user)
+            val action = LoginFragmentDirections.actionLoginFragmentToRestaurantFragment(user)
             Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
 
 
