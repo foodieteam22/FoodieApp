@@ -25,4 +25,7 @@ interface CommentDao {
     @Query("SELECT * FROM comments_table")
     fun getAllComments():LiveData<List<CommentEntry>>
 
+    @Query("SELECT * FROM comments_table")
+    suspend fun getAll(): List<CommentEntry>
+
 }

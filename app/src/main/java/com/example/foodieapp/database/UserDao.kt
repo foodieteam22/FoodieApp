@@ -27,5 +27,8 @@ interface UserDao {
     @Query("UPDATE user_table SET downloadUrl = :downloadUrl WHERE email =:email")
     fun updatePhoto(downloadUrl: String?, email: String)
 
+    @Query("SELECT * FROM user_table")
+    suspend fun getAllUser(): List<UserEntry>
+
 
 }
