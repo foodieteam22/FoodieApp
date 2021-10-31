@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:text="@{menuItemModel.name}"
-                    android:fontFamily="sans-serif-medium"
+                    android:fontFamily="@font/abeezee"
                     tools:text="Yemek"
                      />
 
@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-medium"
+                    android:fontFamily="@font/abeezee"
                     android:textAlignment="viewEnd"
                     tools:text="0.0F"
                     android:text="@{String.valueOf(menuItemModel.price)}" />

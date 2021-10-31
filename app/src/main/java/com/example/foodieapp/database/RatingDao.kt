@@ -18,4 +18,7 @@ interface RatingDao {
     @Query("SELECT * FROM rating_table WHERE restaurantId=:restaurantId")
     fun getRating(restaurantId: Int):LiveData<RatingEntry>
 
+    @Query("SELECT * FROM rating_table")
+    suspend fun getAll(): List<RatingEntry>
+
 }

@@ -14,7 +14,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background_selector"
         tools:context=".view.RatingFragment"
         android:padding="16dp">
 
@@ -43,8 +42,9 @@
                         android:gravity="center"
                         android:textAlignment="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textStyle="bold"
+                        android:fontFamily="@font/abeezee"
                         tools:text="Restaurant Name" />
                 </LinearLayout>
 
@@ -69,7 +69,8 @@
                             android:text="@string/rating_taste"
                             android:textAlignment="center"
                             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                            android:textColor="@color/white">
+                            android:fontFamily="@font/abeezee"
+                            android:textColor="@color/black">
 
                         </TextView>
 
@@ -99,7 +100,8 @@
                             android:text="@string/rating_service"
                             android:textAlignment="center"
                             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                            android:textColor="@color/white">
+                            android:fontFamily="@font/abeezee"
+                            android:textColor="@color/black">
 
                         </TextView>
 
@@ -129,7 +131,8 @@
                             android:text="@string/rating_hygiene"
                             android:textAlignment="center"
                             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                            android:textColor="@color/white">
+                            android:fontFamily="@font/abeezee"
+                            android:textColor="@color/black">
 
                         </TextView>
 
@@ -165,9 +168,11 @@
                     android:hint="@string/rating_comment_hint"
                     android:inputType="textMultiLine"
                     android:padding="8dp"
-                    android:textAlignment="viewStart"
+                    android:gravity="start"
+                    android:fontFamily="@font/abeezee"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnRatingOk"
@@ -180,6 +185,7 @@
                     android:background="@drawable/button_selector"
                     android:text="@string/ok_button"
                     android:textColor="@color/white"
+                    android:fontFamily="@font/abeezee"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
             </LinearLayout>
         </LinearLayout>

@@ -6,18 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
-import com.example.foodieapp.database.CommentEntry
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodieapp.databinding.FragmentCommentsBinding
 import com.example.foodieapp.viewadapter.CommentsAdapter
 import com.example.foodieapp.viewmodel.CommentViewModel
 
 
 class CommentFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-
     private val viewModel: CommentViewModel by viewModels()
     private lateinit var adapter: CommentsAdapter
+    private val binding get() = _binding!!
+    private var _binding: FragmentCommentsBinding? = null
 
 
     override fun onCreateView(
@@ -25,32 +26,41 @@ class CommentFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding = FragmentCommentsBinding.inflate(inflater)
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
+        _binding = FragmentCommentsBinding.inflate(inflater)
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
+        return binding.root
 
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        readCommentsFromDb()
+    }
+
+    private fun readCommentsFromDb() {
         val args = CommentFragmentArgs.fromBundle(requireArguments())
-
         if (args.restaurantId != 0)
 
             viewModel.getRestaurantComments(args.restaurantId).observe(viewLifecycleOwner) {
-                adapter= CommentsAdapter(it)
+                bindRecyclerView(CommentsAdapter(it))
             }
         else if (!TextUtils.isEmpty(args.author))
             viewModel.getCommentsByAuthor(args.author!!).observe(viewLifecycleOwner) {
-                adapter= CommentsAdapter(it)
+                bindRecyclerView(CommentsAdapter(it))
             }
         else {
-            adapter= CommentsAdapter(ArrayList<CommentEntry>())
+            viewModel.getAllComments().observe(viewLifecycleOwner){
+                //adapter=
+                bindRecyclerView(CommentsAdapter(it))
+
+            }
         }
 
-        binding.apply {
-
-            binding.commentsRecyclerView.adapter = adapter
-
-        }
-        return binding.root
     }
 
+    private fun bindRecyclerView(adapter: CommentsAdapter) {
+        binding.commentsRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.commentsRecyclerView.adapter = adapter
+    }
 
 }

@@ -16,6 +16,8 @@ class UserRepository(val userDao: UserDao) {
 
     fun getUserEmail(email: String)=userDao.getUserByEmail(email)
 
+    suspend fun getAllUser()=userDao.getAllUser()
+
 
 
 }

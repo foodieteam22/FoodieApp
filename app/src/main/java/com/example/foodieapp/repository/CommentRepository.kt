@@ -13,4 +13,6 @@ class CommentRepository(val commentDao:CommentDao) {
     fun getCommentsByAuthor(author: String)=commentDao.getCommentsByAuthor(author)
 
     fun getRestaurantComments(restaurantId:Int)=commentDao.getRestaurantComments(restaurantId)
+
+    fun getAllComments()=commentDao.getAllComments()
 }
