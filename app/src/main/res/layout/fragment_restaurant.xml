@@ -24,6 +24,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 tools:listitem="@layout/restaurant_row_layout"
                 />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
