@@ -7,7 +7,7 @@ class ApiManager {
     private var APP_KEY:String= ""
     companion object{
         private  lateinit var retrofit:Retrofit
-        private  val BASE_URL = "https://worldwide-restaurants.p.rapidapi.com/search"
+        private  val BASE_URL = "https://raw.githubusercontent.com"
         val retrofitInstance :Retrofit
 
         get() {
