@@ -117,6 +117,12 @@
         <argument
             android:name="user"
             app:argType="com.example.foodieapp.database.UserEntry" />
+        <action
+            android:id="@+id/action_reservationsFragment_to_tableSchemeFragment"
+            app:destination="@id/tableSchemeFragment" />
+        <action
+            android:id="@+id/action_reservationsFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
     <fragment
         android:id="@+id/helpFragment"
