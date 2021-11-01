@@ -10,6 +10,20 @@ data class RestaurantModel(
     @SerializedName("name")
     val name: String,
 
+    @SerializedName("rating")
+    val rating: String,
+
+    @SerializedName("ratio")
+    val ratio: String,
+
+    @SerializedName("percentile")
+    val percentile: String,
+
+    @SerializedName("imageResource")
+    val imageResource: String,
+
+
+
     @SerializedName("rest-items")
     var items: List<RestaurantDetailModel>,
 
