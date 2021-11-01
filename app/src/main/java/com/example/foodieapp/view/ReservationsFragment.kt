@@ -1,24 +1,19 @@
 package com.example.foodieapp.view
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.Toast
-import androidx.databinding.DataBindingUtil.setContentView
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.foodieapp.R
-import com.example.foodieapp.utils.downloadImage
-import com.example.foodieapp.utils.makePlaceholder
-import com.example.foodieapp.viewmodel.LoginViewModel
+import com.example.foodieapp.database.UserEntry
+import com.example.foodieapp.databinding.FragmentProfileBinding
+import com.example.foodieapp.databinding.FragmentReservationsBinding
 import com.example.foodieapp.viewmodel.ReservationsViewModel
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 class ReservationsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -27,12 +22,15 @@ class ReservationsFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private lateinit var viewModel: ReservationsViewModel
+    private val binding get() = _binding!!
+    private var _binding: FragmentReservationsBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_reservations,container,false)
+        _binding = FragmentReservationsBinding.inflate(layoutInflater,container,false)
+        val view = binding.root
 
         val desks = arrayOf("Masa Seç","1","2","3")
         val personCount = arrayOf("Kişi Sayısı","1","2","3","4")
@@ -66,6 +64,16 @@ class ReservationsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnShowDesk.setOnClickListener {
+            val action = ReservationsFragmentDirections.actionReservationsFragmentToTableSchemeFragment("https://www.gstatic.com/webp/gallery/1.jpg")
+            Navigation.findNavController(view).navigate(action)
+        }
+
+        binding.btnShowMenu.setOnClickListener {
+            val action = ReservationsFragmentDirections.actionReservationsFragmentToMenuFragment(1)
+            Navigation.findNavController(view).navigate(action)
+        }
     }
 
     fun complete(view: View){
