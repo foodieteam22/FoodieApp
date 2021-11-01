@@ -16,29 +16,29 @@
       android:orientation="vertical">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:src="@drawable/restaurant_image_example" />
+        android:src="@drawable/resturant_demo_image" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16sp"
-                android:layout_marginLeft="50sp"
-                android:text="Buraya Restoran adı "
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50sp"
+            android:layout_marginBottom="24dp"
+            android:text="Buraya Restoran adı "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -60,49 +60,108 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16sp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40sp"
+            android:text="Maltepe, İstanbul">
+
+        </TextView>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8sp"
+                android:src="@drawable/ic_baseline_location_on_24">
+            </ImageView>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-            <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/tvTableScheme"
-                android:layout_height="40dp"
-                android:textColor="@color/white"
-                android:text="Masa Düzeni"
-                android:layout_marginRight="32sp"
-                android:layout_marginLeft="50sp"
-                android:layout_marginBottom="16sp"
-                android:layout_marginTop="16sp"
-                android:gravity="center"
-                android:onClick="onTableSchemeClick"
-                android:layout_weight="1"
-                android:background="@drawable/button_selector_v2">
+            android:orientation="horizontal"
+            android:layout_marginLeft="40sp">
+            <LinearLayout
+                android:id="@+id/layoutResDetailMenu"
+                android:onClick="onDetailMenuClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
 
-            </TextView>
-            <TextView
-                android:id="@+id/tvComments"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginRight="50sp"
-                android:layout_marginLeft="32sp"
-                android:layout_marginBottom="16sp"
-                android:layout_marginTop="16sp"
-                android:textColor="@color/white"
-                android:text="Yorumlar"
+                <ImageView
+                    android:id="@+id/ImgResDetailMenu"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_baseline_menu_book_24"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Menü"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layoutResDetailTableScheme"
+                android:onClick="onTableSchemeClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <ImageView
+                android:id="@+id/ImgResDetailTableSchme"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_baseline_tablelayout_24"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Masa Düzeni"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutResDetailComments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:onClick="onCommentsClick"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:elevation="@dimen/cardview_default_radius"
-                android:background="@drawable/button_selector_v2">
-            </TextView>
+                android:layout_weight="1">
+
+                <ImageView
+                android:id="@+id/ImgResDetailComments"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_comments"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Yorumlar"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
 
         </LinearLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

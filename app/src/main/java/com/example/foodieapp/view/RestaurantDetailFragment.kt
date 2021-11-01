@@ -75,18 +75,21 @@ class RestaurantDetailFragment : Fragment() {
         binding.apply {
 
             binding.restaurantFeatureRecyclerView.adapter = adapter
-            tvComments.setOnClickListener{
+            layoutResDetailComments.setOnClickListener{
                 val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment("Serkan",1)
                 Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
 
             }
             val url = "https://www.gstatic.com/webp/gallery/1.jpg"
-            tvTableScheme.setOnClickListener{
+            layoutResDetailTableScheme.setOnClickListener{
                 val action = RestaurantDetailFragmentDirections.actionDetailFragmentToTableSchemeFragment(url)
                 Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
             }
             floatingActionButtonAddReservation.setOnClickListener{
                 onAddReservationClick()
+            }
+            layoutResDetailMenu.setOnClickListener{
+                onDetailMenuClick()
             }
 
         }
@@ -98,6 +101,12 @@ class RestaurantDetailFragment : Fragment() {
     {
         val user :UserEntry = UserEntry(1,"ss","ss")
         val action = RestaurantDetailFragmentDirections.actionDetailFragmentToReservationFragment(user)
+        Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
+    }
+    fun onDetailMenuClick()
+    {
+        val user :UserEntry = UserEntry(1,"ss","ss")
+        val action = RestaurantDetailFragmentDirections.actionDetailFragmentToMenuFragment(1)
         Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
     }
 
