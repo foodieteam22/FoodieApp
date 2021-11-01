@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.foodieapp.databinding.FragmentRestaurantBinding
+import com.example.foodieapp.databinding.RestaurantRowLayoutBinding
 import com.example.foodieapp.model.RestaurantModel
 
 public class ResturantAdapter(
@@ -15,7 +15,7 @@ public class ResturantAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            FragmentRestaurantBinding.inflate(
+            RestaurantRowLayoutBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -24,7 +24,7 @@ public class ResturantAdapter(
 
     }
 
-    inner class ViewHolder(val binding:FragmentRestaurantBinding) :
+    inner class ViewHolder(val binding:RestaurantRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(restModel: RestaurantModel) {
             binding.restaurantModel = restModel
@@ -34,10 +34,13 @@ public class ResturantAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val current = restData.get(position)
-        holder.binding.resturantrecyclerView.layoutManager = LinearLayoutManager(context)
+        holder.binding.restItemRecyclerView.layoutManager= LinearLayoutManager(context)
+        holder.binding.restItemRecyclerView.adapter= RestaurantItemAdapter(current.items)
+
         holder.bind(current)
 
     }
+
 
     override fun getItemCount(): Int {
         return restData.count()

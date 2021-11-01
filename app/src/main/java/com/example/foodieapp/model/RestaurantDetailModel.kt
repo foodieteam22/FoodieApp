@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName
 data class RestaurantDetailModel (
 
     @SerializedName("id")
-    val id: Long
+    val id: String,
 
-)
+    @SerializedName("name")
+    val name: String,
+
+    )

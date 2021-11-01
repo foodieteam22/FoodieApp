@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
-
-    <data>
-        <variable
-            name="RestaurantModel"
-            type="com.example.foodieapp.model.RestaurantModel" />
-    </data>
-
-
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -31,14 +23,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 tools:listitem="@layout/restaurant_row_layout"
-                />
-            <ProgressBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/progress_bar"
-                app:layout_constraintTop_toBottomOf="@+id/resturantrecyclerView"
-                app:layout_constraintBottom_toBottomOf="parent"
-
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

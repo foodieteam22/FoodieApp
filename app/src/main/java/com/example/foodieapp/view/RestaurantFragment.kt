@@ -8,6 +8,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.foodieapp.R
 import com.example.foodieapp.databinding.FragmentRestaurantBinding
 import com.example.foodieapp.model.MenuModel
@@ -27,7 +28,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RestaurantFragment : Fragment() {
-
     private lateinit var adapter: ResturantAdapter
     private lateinit var restData : List<RestaurantModel>
     private val binding get() = _binding!!
@@ -46,7 +46,7 @@ class RestaurantFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-       // parseJSON()
+        parseJSON()
     }
 
 
@@ -63,14 +63,13 @@ class RestaurantFragment : Fragment() {
         val service = retrofit.create(ResturantService::class.java)
         CoroutineScope(Dispatchers.IO).launch {
 
-            var response = service.getRest("/foodieteam22/mockjson/main/data.json")
-            Log.i("infoonur","geldi")
+            var response = service.getRest("/foodieteam22/mockjson/main/test.json")
+
             response!!.enqueue(object : Callback<List<RestaurantModel>> {
                 override fun onResponse(call: Call<List<RestaurantModel>>, response: Response<List<RestaurantModel>>)
                 {
-                    Log.i("infoonur2","geldi")
+
                     if (response.code() == 200) {
-                        Log.e("onurmessage","geldi")
                         val restDataList = response.body()!!
                         restData = restDataList
                         adapter = ResturantAdapter(context, restData)
@@ -85,6 +84,7 @@ class RestaurantFragment : Fragment() {
                     }
                 }
                 override fun onFailure(call: Call<List<RestaurantModel>>, t: Throwable) {
+                    Log.e("failure","Fail")
                 }
             })
         }
