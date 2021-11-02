@@ -26,7 +26,6 @@ public class ResturantAdapter(
             RestaurantRowLayoutBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
-
                 false
             )
         )

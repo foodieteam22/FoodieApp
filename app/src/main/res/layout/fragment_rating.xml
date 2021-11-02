@@ -187,8 +187,13 @@
                     android:textColor="@color/white"
                     android:fontFamily="@font/abeezee"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
             </LinearLayout>
+
         </LinearLayout>
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
