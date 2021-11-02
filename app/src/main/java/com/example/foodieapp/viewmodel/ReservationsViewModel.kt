@@ -7,6 +7,7 @@ import com.example.foodieapp.database.ReservationEntry
 import com.example.foodieapp.database.RestaurantDatabase
 import com.example.foodieapp.database.RestaurantFeatureEntry
 import com.example.foodieapp.repository.ReservationRepository
+import com.example.foodieapp.repository.RestaurantFeatureRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

@@ -1,20 +1,18 @@
 package com.example.foodieapp.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
+@Dao
 interface ReservationDao {
     @Insert
-    suspend fun insert(reservationEntry :ReservationEntry)
+    suspend fun insert(reservationEntry :com.example.foodieapp.database.ReservationEntry)
 
     @Delete
-    suspend fun delete(reservationEntry :ReservationEntry)
+    suspend fun delete(reservationEntry :com.example.foodieapp.database.ReservationEntry)
 
     @Update
-    suspend fun update(reservationEntry :ReservationEntry)
+    suspend fun update(reservationEntry :com.example.foodieapp.database.ReservationEntry)
 
     @Query("DELETE FROM reservation_table")
     suspend fun deleteAll()
