@@ -77,7 +77,8 @@
         <argument
             android:name="author"
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="true"
+            android:defaultValue="Gamze" />
         <argument
             android:name="restaurantId"
             app:argType="integer"
@@ -95,10 +96,14 @@
         android:label="RatingFragment" >
         <argument
             android:name="restaurantInfo"
-            app:argType="com.example.foodieapp.database.RestaurantEntry" />
+            app:argType="com.example.foodieapp.database.RestaurantEntry"
+            app:nullable="true"
+            android:defaultValue="@null" />
         <argument
             android:name="author"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="Gamze" />
         <action
             android:id="@+id/action_ratingFragment_to_commentFragment"
             app:destination="@id/commentFragment" />
@@ -160,7 +165,8 @@
     <fragment
         android:id="@+id/restaurantDetailFragment"
         android:name="com.example.foodieapp.view.RestaurantDetailFragment"
-        android:label="RestaurantDetailFragment" >
+        android:label="RestaurantDetailFragment"
+        >
 
         <action
             android:id="@+id/action_detailFragment_to_commentFragment"

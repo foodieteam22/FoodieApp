@@ -17,9 +17,8 @@ class ReservationsViewModel  (application: Application) : AndroidViewModel(appli
     private val reservationDao = RestaurantDatabase.getDatabase(application).reservationDao()
     private val reservationRepo : ReservationRepository
 
-    init {
+    init{
         reservationRepo = ReservationRepository(reservationDao)
-
     }
 
     fun insertReservation(reservationEntry: ReservationEntry){

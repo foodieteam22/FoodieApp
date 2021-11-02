@@ -41,7 +41,7 @@ class CommentsAdapter(private val commentsData: List<CommentEntry>): RecyclerVie
         val name = viewHolder.nameTextView
         name.setText(contact.author)
         val rate = viewHolder.rateTextView
-        rate.setText(contact.rating.toString())
+        rate.setText(String.format("%.1f",contact.rating).plus("/5"))
         val desc = viewHolder.descTextView
         desc.setText(contact.description)
 
