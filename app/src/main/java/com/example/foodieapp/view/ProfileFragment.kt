@@ -134,10 +134,9 @@ class ProfileFragment : Fragment() {
                Navigation.findNavController(view).navigate(action)
 
            }
-           if (it.itemId==R.id.comment){
-               val action = ProfileFragmentDirections.actionProfileFragmentToCommentFragment(binding.tvUserName.text.toString(),0,args.user)
+           if (it.itemId==R.id.booking){
+               val action = ProfileFragmentDirections.actionProfileFragmentToListReservationFragment(args.user)
                Navigation.findNavController(view).navigate(action)
-
            }
            true
 

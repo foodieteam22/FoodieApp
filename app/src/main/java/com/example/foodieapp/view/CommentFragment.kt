@@ -51,6 +51,11 @@ class CommentFragment : Fragment() {
                 Navigation.findNavController(view).navigate(action)
 
             }
+            if (it.itemId== R.id.booking){
+                val action = CommentFragmentDirections.actionCommentFragmentToListReservationFragment(args.user)
+                Navigation.findNavController(view).navigate(action)
+
+            }
             true
 
 

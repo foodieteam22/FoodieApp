@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.navigation.fragment.findNavController
 import com.example.foodieapp.R
 import com.example.foodieapp.database.CommentEntry
+import com.example.foodieapp.database.RestaurantEntry
 import com.example.foodieapp.database.RestaurantFeatureEntry
 import com.example.foodieapp.database.UserEntry
 import com.example.foodieapp.databinding.FragmentCommentsBinding
@@ -34,7 +35,6 @@ class RestaurantDetailFragment : Fragment() {
     private lateinit var adapter: RestaurantFeatureEntryAdapter
     private lateinit var featureList: ArrayList<RestaurantFeatureEntry>
     private lateinit var user: UserEntry
-    private lateinit var args: RestaurantDetailFragmentArgs
     private lateinit var restaurantInfo : RestaurantEntry
     private lateinit var args: RestaurantDetailFragmentArgs
     override fun onCreateView(
@@ -81,13 +81,13 @@ class RestaurantDetailFragment : Fragment() {
 
             binding.restaurantFeatureRecyclerView.adapter = adapter
             layoutResDetailComments.setOnClickListener{
-                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment("Serkan",1)
+                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment("Serkan",1,args.user)
                 Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
 
             }
             val url = "https://www.gstatic.com/webp/gallery/1.jpg"
             layoutResDetailTableScheme.setOnClickListener{
-                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToTableSchemeFragment(url)
+                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToTableSchemeFragment(url,args.user)
                 Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
             }
             floatingActionButtonAddReservation.setOnClickListener{
@@ -102,8 +102,8 @@ class RestaurantDetailFragment : Fragment() {
                     Navigation.findNavController(requireView()).navigate(action)
 
                 }
-                if (it.itemId== R.id.comment){
-                    val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment(args.user.email,0,args.user)
+                if (it.itemId== R.id.booking){
+                    val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToListReservationFragment(args.user)
                     Navigation.findNavController(requireView()).navigate(action)
 
                 }
@@ -133,7 +133,7 @@ class RestaurantDetailFragment : Fragment() {
     fun onDetailMenuClick()
     {
         val user :UserEntry = UserEntry(1,"ss","ss")
-        val action = RestaurantDetailFragmentDirections.actionDetailFragmentToMenuFragment(1)
+        val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToMenuFragment(1)
         Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
     }
 

@@ -17,8 +17,10 @@ class ReservationsViewModel  (application: Application) : AndroidViewModel(appli
     private val reservationDao = RestaurantDatabase.getDatabase(application).reservationDao()
     private val reservationRepo : ReservationRepository
 
+
     init{
         reservationRepo = ReservationRepository(reservationDao)
+
     }
 
     fun insertReservation(reservationEntry: ReservationEntry){
@@ -30,5 +32,8 @@ class ReservationsViewModel  (application: Application) : AndroidViewModel(appli
     fun getResByEmail(email: String): LiveData<List<ReservationEntry>> {
         return reservationRepo.getResEmail(email)
     }
+
+
+
 
 }
