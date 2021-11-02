@@ -103,15 +103,19 @@ class ReservationsFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
         binding.btnComplete.setOnClickListener {
             val reservationEntry = ReservationEntry(
-                7,"Sakiz Restoran",args.user.email,"5")
+                0,"Sakiz Restoran",args.user.email,"5")
            viewModel.insertReservation(reservationEntry)
             Toast.makeText(requireContext(), "OK", Toast.LENGTH_SHORT).show()
         }
+        binding.etRestaurantName.text=args.restaurant.name
+        binding.progressBarHorizontal.progress=args.restaurant.ratio.toInt()
+        binding.etRestaurantDensityValue.text=args.restaurant.ratio
+
 
     }
 
     fun complete(view: View){
-        insertReservation()
+
 
     }
 

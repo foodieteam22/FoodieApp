@@ -42,9 +42,8 @@ public class ResturantAdapter(
 
             itemView.setOnClickListener(){
                 val position:Int = adapterPosition
-                val action = RestaurantFragmentDirections.actionRestaurantFragmentToRestaurantDetailFragment(userEntry)
+                val action = RestaurantFragmentDirections.actionRestaurantFragmentToRestaurantDetailFragment(userEntry,restModel)
                 Navigation.findNavController(itemView).navigate(action)
-                Toast.makeText(itemView.context,restModel.name, Toast.LENGTH_LONG).show()
             }
         }
     }

@@ -20,27 +20,8 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.SearchView
-                    android:layout_marginStart="2dp"
-                    android:id="@+id/restaurant_search"
-                    android:layout_width="350dp"
-                    app:queryHint="@string/resturant_search"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edit_text_background"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:textCursorDrawable="@null"
-                    app:iconifiedByDefault="false"
-                    app:queryBackground="@null" />
 
-                <TextView
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/filter_icon"
-                    app:layout_constraintLeft_toRightOf="@+id/restaurant_search"
-                    app:layout_constraintTop_toTopOf="parent">
 
-                </TextView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -54,7 +35,20 @@
                 app:layout_constraintVertical_bias="1.0"
                 tools:listitem="@layout/restaurant_row_layout" />
 
-
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigationMenusearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:itemIconTint="@color/orange"
+                app:itemTextColor="@color/orange"
+                app:showAsAction="always|collapseActionView"
+                app:actionViewClass="androidx.appcompat.widget.SearchView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="0dp"
+                app:menu="@menu/search_menu" />
 
                 <com.google.android.material.bottomnavigation.BottomNavigationView
                     android:id="@+id/bottomNavigationMenu"
