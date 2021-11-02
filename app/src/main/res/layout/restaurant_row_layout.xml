@@ -43,7 +43,7 @@
                 android:padding="1dp"
                 android:text="@{restaurantModel.name}"
                 android:hint="@string/resturant_title"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toRightOf="@+id/imgItem"
                 app:layout_constraintTop_toTopOf="parent" />
