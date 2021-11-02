@@ -16,6 +16,6 @@
     <string name="resturant_search">Restorant Ara...</string>
     <string name="menu_title">Menu</string>
     <string name="menu_base_url">https://raw.githubusercontent.com</string>
-    <string name="menu_url">/foodieteam22/mockjson/main/Menu-%d.json</string>
+    <string name="menu_url">/foodieteam22/mockjson/main/Menu.json</string>
     <string name="comment_not_found">Yorum bulunamadı</string>
 </resources>
