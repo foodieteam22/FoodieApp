@@ -1,31 +1,20 @@
 package com.example.foodieapp.view
 
-import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.room.util.StringUtil
 import com.example.foodieapp.database.CommentEntry
 import com.example.foodieapp.database.RatingEntry
 import com.example.foodieapp.database.RestaurantEntry
-import com.example.foodieapp.databinding.FragmentProfileBinding
 import com.example.foodieapp.databinding.FragmentRatingBinding
 import com.example.foodieapp.viewmodel.CommentViewModel
 import com.example.foodieapp.viewmodel.RatingViewModel
-import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 
 class RatingFragment : Fragment() {
@@ -41,7 +30,7 @@ class RatingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRatingBinding.inflate(layoutInflater,container,false)
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         return binding.root
@@ -52,6 +41,7 @@ class RatingFragment : Fragment() {
 
         val args = RatingFragmentArgs.fromBundle(requireArguments())
         var restaurantInfo=args.restaurantInfo
+        val author=args.author
 
         if(restaurantInfo == null)
             restaurantInfo= RestaurantEntry(1,"Restoran Adı", 90876457);
@@ -66,13 +56,13 @@ class RatingFragment : Fragment() {
         binding.ratingBarService.numStars=5
         binding.ratingBarService.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             serviceRate= ratingBar.rating
-            avgRate+=hygieneRate/3
+            avgRate+=serviceRate/3
         }
 
         binding.ratingBarTaste.numStars=5
         binding.ratingBarTaste.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             tasteRate= ratingBar.rating
-            avgRate+=hygieneRate/3
+            avgRate+=tasteRate/3
         }
 
         binding.btnRatingOk.setOnClickListener {
@@ -81,8 +71,8 @@ class RatingFragment : Fragment() {
                 Toast.makeText(requireContext(),"Oy alanları boş geçilemez", Toast.LENGTH_LONG).show();
             }else{
                 insertRating(restaurantInfo.id)
-                insertComment(restaurantInfo.id, "Gamze", binding)
-                val action = RatingFragmentDirections.actionRatingFragmentToCommentFragment("Gamze", 1)
+                insertComment(restaurantInfo.id, author!!, binding)
+                val action = RatingFragmentDirections.actionRatingFragmentToCommentFragment(author, restaurantInfo.id)
                 Navigation.findNavController(view).navigate(action)
             }
 

@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
-    app:startDestination="@id/commentFragment">
+    app:startDestination="@id/ratingFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -83,10 +83,14 @@
         android:label="RatingFragment" >
         <argument
             android:name="restaurantInfo"
-            app:argType="com.example.foodieapp.database.RestaurantEntry" />
+            app:argType="com.example.foodieapp.database.RestaurantEntry"
+            app:nullable="true"
+            android:defaultValue="@null" />
         <argument
             android:name="author"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="Gamze" />
         <action
             android:id="@+id/action_ratingFragment_to_commentFragment"
             app:destination="@id/commentFragment" />
