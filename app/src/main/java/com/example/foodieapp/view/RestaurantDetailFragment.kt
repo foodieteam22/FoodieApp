@@ -34,11 +34,13 @@ class RestaurantDetailFragment : Fragment() {
     private lateinit var adapter: RestaurantFeatureEntryAdapter
     private lateinit var featureList: ArrayList<RestaurantFeatureEntry>
     private lateinit var user: UserEntry
+    private lateinit var args: RestaurantDetailFragmentArgs
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        args = RestaurantDetailFragmentArgs.fromBundle(requireArguments())
         val binding = FragmentRestaurantDetailBinding.inflate(inflater)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -76,7 +78,7 @@ class RestaurantDetailFragment : Fragment() {
 
             binding.restaurantFeatureRecyclerView.adapter = adapter
             tvComments.setOnClickListener{
-                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment("Serkan",1)
+                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment(args.user.email,1,args.user)
                 Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
 
             }
@@ -88,6 +90,26 @@ class RestaurantDetailFragment : Fragment() {
             floatingActionButtonAddReservation.setOnClickListener{
                 onAddReservationClick()
             }
+            bottomNavigationMenu.setOnNavigationItemSelectedListener {
+                if (it.itemId== R.id.profile){
+                    val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToProfileFragment(args.user)
+                    Navigation.findNavController(requireView()).navigate(action)
+
+                }
+                if (it.itemId== R.id.comment){
+                    val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment(args.user.email,0,args.user)
+                    Navigation.findNavController(requireView()).navigate(action)
+
+                }
+                if (it.itemId== R.id.home){
+                    val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToRestaurantFragment(args.user)
+                    Navigation.findNavController(requireView()).navigate(action)
+
+                }
+                true
+
+
+            }
 
         }
         val view = binding.root
@@ -96,8 +118,8 @@ class RestaurantDetailFragment : Fragment() {
     }
     fun onAddReservationClick()
     {
-        val user :UserEntry = UserEntry(1,"ss","ss")
-        val action = RestaurantDetailFragmentDirections.actionDetailFragmentToReservationFragment(user)
+        //val user :UserEntry = UserEntry(1,"ss","ss")
+        val action = RestaurantDetailFragmentDirections.actionDetailFragmentToReservationFragment(args.user)
         Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
     }
 
@@ -106,6 +128,7 @@ class RestaurantDetailFragment : Fragment() {
         /*viewModel.getRestFetureById(1).observe(viewLifecycleOwner) {
             adapter= RestaurantFeatureEntryAdapter(it)
         }*/
+
 
     }
 

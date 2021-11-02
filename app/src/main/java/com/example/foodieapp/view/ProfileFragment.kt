@@ -119,7 +119,7 @@ class ProfileFragment : Fragment() {
 
 
         binding.btnRating.setOnClickListener {
-            val action = ProfileFragmentDirections.actionProfileFragmentToCommentFragment(binding.tvUserName.text.toString(),0)
+            val action = ProfileFragmentDirections.actionProfileFragmentToCommentFragment(binding.tvUserName.text.toString(),0, args.user)
             Navigation.findNavController(view).navigate(action)
 
         }
@@ -135,7 +135,7 @@ class ProfileFragment : Fragment() {
 
            }
            if (it.itemId==R.id.comment){
-               val action = ProfileFragmentDirections.actionProfileFragmentToCommentFragment(binding.tvUserName.text.toString(),0)
+               val action = ProfileFragmentDirections.actionProfileFragmentToCommentFragment(binding.tvUserName.text.toString(),0,args.user)
                Navigation.findNavController(view).navigate(action)
 
            }

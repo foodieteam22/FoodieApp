@@ -19,6 +19,7 @@ import androidx.room.util.StringUtil
 import com.example.foodieapp.database.CommentEntry
 import com.example.foodieapp.database.RatingEntry
 import com.example.foodieapp.database.RestaurantEntry
+import com.example.foodieapp.database.UserEntry
 import com.example.foodieapp.databinding.FragmentProfileBinding
 import com.example.foodieapp.databinding.FragmentRatingBinding
 import com.example.foodieapp.viewmodel.CommentViewModel
@@ -80,9 +81,10 @@ class RatingFragment : Fragment() {
             if(avgRate.equals(0.0F)) {
                 Toast.makeText(requireContext(),"Oy alanları boş geçilemez", Toast.LENGTH_LONG).show();
             }else{
+                val  userEntry = UserEntry(1,"ddd@gmail.com","dddd")
                 insertRating(restaurantInfo.id)
                 insertComment(restaurantInfo.id, "Gamze", binding)
-                val action = RatingFragmentDirections.actionRatingFragmentToCommentFragment("Gamze", 1)
+                val action = RatingFragmentDirections.actionRatingFragmentToCommentFragment("Gamze", 1, userEntry)
                 Navigation.findNavController(view).navigate(action)
             }
 

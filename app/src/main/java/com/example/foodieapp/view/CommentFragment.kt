@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.foodieapp.R
 import com.example.foodieapp.databinding.FragmentCommentsBinding
 import com.example.foodieapp.viewadapter.CommentsAdapter
 import com.example.foodieapp.viewmodel.CommentViewModel
@@ -19,6 +21,7 @@ class CommentFragment : Fragment() {
     private lateinit var adapter: CommentsAdapter
     private val binding get() = _binding!!
     private var _binding: FragmentCommentsBinding? = null
+    private lateinit var args: CommentFragmentArgs
 
 
     override fun onCreateView(
@@ -26,6 +29,7 @@ class CommentFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        args = CommentFragmentArgs.fromBundle(requireArguments())
         _binding = FragmentCommentsBinding.inflate(inflater)
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         return binding.root
@@ -35,10 +39,26 @@ class CommentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         readCommentsFromDb()
+
+        binding.bottomNavigationMenu.setOnNavigationItemSelectedListener {
+            if (it.itemId== R.id.home){
+                val action = CommentFragmentDirections.actionCommentFragmentToRestaurantFragment(args.user)
+                Navigation.findNavController(view).navigate(action)
+
+            }
+            if (it.itemId== R.id.profile){
+                val action = CommentFragmentDirections.actionCommentFragmentToProfileFragment(args.user)
+                Navigation.findNavController(view).navigate(action)
+
+            }
+            true
+
+
+        }
     }
 
     private fun readCommentsFromDb() {
-        val args = CommentFragmentArgs.fromBundle(requireArguments())
+        args = CommentFragmentArgs.fromBundle(requireArguments())
         if (args.restaurantId != 0)
 
             viewModel.getRestaurantComments(args.restaurantId).observe(viewLifecycleOwner) {

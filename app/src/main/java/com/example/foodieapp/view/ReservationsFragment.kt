@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.foodieapp.R
 import com.example.foodieapp.database.ReservationEntry
@@ -15,6 +17,7 @@ import com.example.foodieapp.database.RestaurantFeatureEntry
 import com.example.foodieapp.database.UserEntry
 import com.example.foodieapp.databinding.FragmentProfileBinding
 import com.example.foodieapp.databinding.FragmentReservationsBinding
+import com.example.foodieapp.viewmodel.ProfileViewModel
 import com.example.foodieapp.viewmodel.ReservationsViewModel
 
 class ReservationsFragment : Fragment(), AdapterView.OnItemSelectedListener {
@@ -23,14 +26,16 @@ class ReservationsFragment : Fragment(), AdapterView.OnItemSelectedListener {
         fun newInstance() = ReservationsFragment()
     }
 
-    private lateinit var viewModel: ReservationsViewModel
+    private val viewModel: ReservationsViewModel by viewModels()
     private val binding get() = _binding!!
     private var _binding: FragmentReservationsBinding? = null
+    private lateinit var args: ReservationsFragmentArgs
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        args = ReservationsFragmentArgs.fromBundle(requireArguments())
         _binding = FragmentReservationsBinding.inflate(layoutInflater,container,false)
         val view = binding.root
 
@@ -76,15 +81,43 @@ class ReservationsFragment : Fragment(), AdapterView.OnItemSelectedListener {
             val action = ReservationsFragmentDirections.actionReservationsFragmentToMenuFragment(1)
             Navigation.findNavController(view).navigate(action)
         }
+        binding.bottomNavigationMenu.setOnNavigationItemSelectedListener {
+            if (it.itemId== R.id.profile){
+                val action = ReservationsFragmentDirections.actionReservationsFragmentToProfileFragment(args.user)
+                Navigation.findNavController(view).navigate(action)
+
+            }
+            if (it.itemId== R.id.comment){
+                val action = ReservationsFragmentDirections.actionReservationsFragmentToCommentFragment(args.user.email,0,args.user)
+                Navigation.findNavController(view).navigate(action)
+
+            }
+            if (it.itemId== R.id.home){
+                val action = ReservationsFragmentDirections.actionReservationsFragmentToRestaurantFragment(args.user)
+                Navigation.findNavController(view).navigate(action)
+
+            }
+            true
+
+
+        }
+        binding.btnComplete.setOnClickListener {
+            val reservationEntry = ReservationEntry(
+                7,"Sakiz Restoran",args.user.email,"5")
+           viewModel.insertReservation(reservationEntry)
+            Toast.makeText(requireContext(), "OK", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     fun complete(view: View){
+        insertReservation()
 
     }
 
-    private fun insertReservation(Id: Int,restaurantName:String,desks:String, ) {
+    private fun insertReservation( ) {
         val reservationEntry = ReservationEntry(
-            1,"İzmir Sakız Restoran","5")
+            7,"İzmir Sakız Restoran",args.user.email,"5")
         viewModel.insertReservation(reservationEntry)
     }
 

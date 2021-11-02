@@ -2,10 +2,12 @@ package com.example.foodieapp.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.foodieapp.database.ReservationEntry
 import com.example.foodieapp.database.RestaurantDatabase
 import com.example.foodieapp.database.RestaurantFeatureEntry
+import com.example.foodieapp.database.UserEntry
 import com.example.foodieapp.repository.ReservationRepository
 import com.example.foodieapp.repository.RestaurantFeatureRepository
 import kotlinx.coroutines.Dispatchers
@@ -26,4 +28,8 @@ class ReservationsViewModel  (application: Application) : AndroidViewModel(appli
             reservationRepo.insertReservationRepo(reservationEntry)
         }
     }
+    fun getResByEmail(email: String): LiveData<List<ReservationEntry>> {
+        return reservationRepo.getResEmail(email)
+    }
+
 }

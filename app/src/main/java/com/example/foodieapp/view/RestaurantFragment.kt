@@ -8,7 +8,9 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.foodieapp.R
 import com.example.foodieapp.databinding.FragmentRestaurantBinding
 import com.example.foodieapp.viewadapter.ResturantAdapter
 import com.example.foodieapp.model.RestaurantModel
@@ -27,6 +29,7 @@ class RestaurantFragment : Fragment() {
     private lateinit var restData : List<RestaurantModel>
     private val binding get() = _binding!!
     private var _binding: FragmentRestaurantBinding? = null
+    private lateinit var args: RestaurantFragmentArgs
 
 
     override fun onCreateView(
@@ -34,6 +37,7 @@ class RestaurantFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
+        args = RestaurantFragmentArgs.fromBundle(requireArguments())
         _binding = FragmentRestaurantBinding.inflate(layoutInflater,container,false)
                val supportActionBar: ActionBar? = (requireActivity() as AppCompatActivity).supportActionBar
               if (supportActionBar != null) supportActionBar.hide()
@@ -42,6 +46,22 @@ class RestaurantFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         parseJSON()
+
+        binding.bottomNavigationMenu.setOnNavigationItemSelectedListener {
+            if (it.itemId== R.id.profile){
+                val action = RestaurantFragmentDirections.actionRestaurantFragmentToProfileFragment(args.user)
+                Navigation.findNavController(view).navigate(action)
+
+            }
+            if (it.itemId== R.id.comment){
+                val action = RestaurantFragmentDirections.actionRestaurantFragmentToCommentFragment(args.user.email,0,args.user)
+                Navigation.findNavController(view).navigate(action)
+
+            }
+            true
+
+
+        }
     }
 
 
@@ -75,7 +95,7 @@ class RestaurantFragment : Fragment() {
                     if (response.code() == 200) {
                         val restDataList = response.body()!!
                         restData = restDataList
-                        adapter = ResturantAdapter(context, restData)
+                        adapter = ResturantAdapter(context, restData, args.user)
                         binding.resturantrecyclerView.layoutManager =LinearLayoutManager(context)
                         binding.resturantrecyclerView.adapter =adapter
 
