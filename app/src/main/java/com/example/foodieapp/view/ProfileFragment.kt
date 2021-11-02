@@ -1,5 +1,6 @@
 package com.example.foodieapp.view
 
+import android.app.FragmentManager
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
@@ -32,7 +33,7 @@ import com.google.firebase.storage.ktx.storage
 
 
 class ProfileFragment : Fragment() {
-   private val viewModel: ProfileViewModel by viewModels()
+    private val viewModel: ProfileViewModel by viewModels()
     private lateinit var storage: FirebaseStorage
     private lateinit var auth: FirebaseAuth
     private val binding get() = _binding!!
@@ -126,6 +127,23 @@ class ProfileFragment : Fragment() {
            val action = ProfileFragmentDirections.actionProfileFragmentToHelpFragment()
            Navigation.findNavController(view).navigate(action)
        }
+
+       binding.bottomNavigationMenu.setOnNavigationItemSelectedListener {
+           if (it.itemId==R.id.home){
+               val action = ProfileFragmentDirections.actionProfileFragmentToRestaurantFragment(args.user)
+               Navigation.findNavController(view).navigate(action)
+
+           }
+           if (it.itemId==R.id.comment){
+               val action = ProfileFragmentDirections.actionProfileFragmentToCommentFragment(binding.tvUserName.text.toString(),0)
+               Navigation.findNavController(view).navigate(action)
+
+           }
+           true
+
+
+       }
+
 
     }
     fun selectImage(view: View){

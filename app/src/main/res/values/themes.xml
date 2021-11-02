@@ -2,9 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.FoodieApp" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="android:actionOverflowButtonStyle">@style/OptionsMenu</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/orange</item>
+        <item name="colorPrimaryVariant">@color/orange</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -19,9 +18,7 @@
         <item name="colorControlNormal">@color/ratingBarNormal</item>
         <item name="colorControlActivated">@color/ratingBarActivated</item>
     </style>
-    <style name="OptionsMenu" parent="@android:style/Theme.Holo">
-        <item name="android:src">@drawable/ic_baseline_more_vert_24</item>
-    </style>
+
 
 
 

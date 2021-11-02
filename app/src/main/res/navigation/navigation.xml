@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
-    app:startDestination="@id/restaurantFragment">
+    app:startDestination="@id/restaurantDetailFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -54,11 +54,14 @@
             android:name="user"
             app:argType="com.example.foodieapp.database.UserEntry" />
         <action
-            android:id="@+id/action_profileFragment_self"
-            app:destination="@id/profileFragment" />
-        <action
             android:id="@+id/action_profileFragment_to_helpFragment"
             app:destination="@id/helpFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_restaurantFragment"
+            app:destination="@id/restaurantFragment" />
+        <action
+            android:id="@+id/action_profileFragment_self"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/commentFragment"
