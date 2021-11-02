@@ -138,7 +138,7 @@
         android:id="@+id/restaurantDetailFragment"
         android:name="com.example.foodieapp.view.RestaurantDetailFragment"
         android:label="RestaurantDetailFragment"
-        app:startDestination="@id/action_restaurantDetailFragment_to_ratingFragment">
+        >
 
         <action
             android:id="@+id/action_detailFragment_to_commentFragment"
@@ -149,12 +149,6 @@
         <action
             android:id="@+id/action_detailFragment_to_tableSchemeFragment"
             app:destination="@id/tableSchemeFragment" />
-        <action
-            android:id="@+id/action_restaurantDetailFragment_to_ratingFragment"
-            app:destination="@id/ratingFragment" />
-        <action
-            android:id="@+id/action_restaurantDetailFragment_to_commentFragment"
-            app:destination="@id/commentFragment" />
 
     </fragment>
     <fragment
