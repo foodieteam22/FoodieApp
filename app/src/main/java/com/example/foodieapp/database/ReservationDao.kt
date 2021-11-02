@@ -20,6 +20,9 @@ interface ReservationDao {
     @Query("SELECT * FROM reservation_table")
     fun getAllReservation(): LiveData<List<ReservationEntry>>
 
+    @Query("SELECT * FROM reservation_table WHERE email=:email")
+    fun getResByEmail(email: String):LiveData<List<ReservationEntry>>
+
 
     @Query("SELECT * FROM reservation_table WHERE id=:id")
     fun getReservation(id: Int):LiveData<List<ReservationEntry>>

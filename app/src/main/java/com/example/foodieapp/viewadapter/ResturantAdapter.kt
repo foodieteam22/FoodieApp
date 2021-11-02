@@ -11,6 +11,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodieapp.R
+import com.example.foodieapp.database.UserEntry
 import com.example.foodieapp.databinding.RestaurantRowLayoutBinding
 import com.example.foodieapp.model.RestaurantModel
 import com.example.foodieapp.view.RestaurantDetailFragmentDirections
@@ -19,6 +20,7 @@ import com.example.foodieapp.view.RestaurantFragmentDirections
 public class ResturantAdapter(
     val context: Context?,
     private  val restData : List<RestaurantModel>,
+    private val userEntry: UserEntry
 ):RecyclerView.Adapter<ResturantAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -40,7 +42,7 @@ public class ResturantAdapter(
 
             itemView.setOnClickListener(){
                 val position:Int = adapterPosition
-                val action = RestaurantFragmentDirections.actionRestaurantFragmentToRestaurantDetailFragment()
+                val action = RestaurantFragmentDirections.actionRestaurantFragmentToRestaurantDetailFragment(userEntry)
                 Navigation.findNavController(itemView).navigate(action)
                 Toast.makeText(itemView.context,restModel.name, Toast.LENGTH_LONG).show()
             }

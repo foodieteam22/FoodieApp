@@ -9,5 +9,5 @@ class ReservationRepository(val reservationDao: ReservationDao) {
 
     suspend fun deleteReservationRepo(reservationEntry: ReservationEntry)=reservationDao.delete(reservationEntry)
 
-    fun getReservationRepo(id:Int)=reservationDao.getReservation(id)
+    fun getResEmail(email: String)=reservationDao.getResByEmail(email)
 }
