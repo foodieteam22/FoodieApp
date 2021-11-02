@@ -88,7 +88,7 @@ class ReservationsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
             }
             if (it.itemId== R.id.comment){
-                val action = ReservationsFragmentDirections.actionReservationsFragmentToCommentFragment(args.user.email,0,args.user)
+                val action = ReservationsFragmentDirections.actionReservationsFragmentToCommentFragment(0,args.user)
                 Navigation.findNavController(view).navigate(action)
 
             }

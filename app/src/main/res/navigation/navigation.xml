@@ -75,11 +75,6 @@
             android:id="@+id/action_commentFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
         <argument
-            android:name="author"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="Gamze" />
-        <argument
             android:name="restaurantId"
             app:argType="integer"
             android:defaultValue="0" />
@@ -192,6 +187,9 @@
         <argument
             android:name="restaurant"
             app:argType="com.example.foodieapp.model.RestaurantModel" />
+        <action
+            android:id="@+id/action_restaurantDetailFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
 
     </fragment>
     <fragment

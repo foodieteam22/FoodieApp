@@ -66,8 +66,8 @@ class CommentFragment : Fragment() {
             viewModel.getRestaurantComments(args.restaurantId).observe(viewLifecycleOwner) {
                 bindRecyclerView(CommentsAdapter(it))
             }
-        else if (!TextUtils.isEmpty(args.author))
-            viewModel.getCommentsByAuthor(args.author!!).observe(viewLifecycleOwner) {
+        else if (!TextUtils.isEmpty(args.user.email))
+            viewModel.getCommentsByAuthor(args.user.email!!).observe(viewLifecycleOwner) {
                 bindRecyclerView(CommentsAdapter(it))
             }
         else {

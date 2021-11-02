@@ -1,29 +1,19 @@
 package com.example.foodieapp.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.RecyclerView
-import androidx.navigation.fragment.findNavController
 import com.example.foodieapp.R
-import com.example.foodieapp.database.CommentEntry
+import com.example.foodieapp.database.RestaurantEntry
 import com.example.foodieapp.database.RestaurantFeatureEntry
 import com.example.foodieapp.database.UserEntry
-import com.example.foodieapp.databinding.FragmentCommentsBinding
-import com.example.foodieapp.databinding.FragmentLoginBinding
-import com.example.foodieapp.databinding.FragmentRatingBinding
 import com.example.foodieapp.databinding.FragmentRestaurantDetailBinding
-import com.example.foodieapp.viewadapter.CommentsAdapter
 import com.example.foodieapp.viewadapter.RestaurantFeatureEntryAdapter
-import com.example.foodieapp.viewmodel.LoginViewModel
 import com.example.foodieapp.viewmodel.RestaurantDetailViewModel
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 
 class RestaurantDetailFragment : Fragment() {
@@ -34,7 +24,6 @@ class RestaurantDetailFragment : Fragment() {
     private lateinit var adapter: RestaurantFeatureEntryAdapter
     private lateinit var featureList: ArrayList<RestaurantFeatureEntry>
     private lateinit var user: UserEntry
-    private lateinit var args: RestaurantDetailFragmentArgs
     private lateinit var restaurantInfo : RestaurantEntry
     private lateinit var args: RestaurantDetailFragmentArgs
     override fun onCreateView(
@@ -81,7 +70,7 @@ class RestaurantDetailFragment : Fragment() {
 
             binding.restaurantFeatureRecyclerView.adapter = adapter
             layoutResDetailComments.setOnClickListener{
-                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment("Serkan",1)
+                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment(restaurantInfo.id,args.user)
                 Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
 
             }
@@ -103,7 +92,7 @@ class RestaurantDetailFragment : Fragment() {
 
                 }
                 if (it.itemId== R.id.comment){
-                    val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment(args.user.email,0,args.user)
+                    val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment(restaurantInfo.id,args.user)
                     Navigation.findNavController(requireView()).navigate(action)
 
                 }
@@ -133,7 +122,7 @@ class RestaurantDetailFragment : Fragment() {
     fun onDetailMenuClick()
     {
         val user :UserEntry = UserEntry(1,"ss","ss")
-        val action = RestaurantDetailFragmentDirections.actionDetailFragmentToMenuFragment(1)
+        val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToMenuFragment(1)
         Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
     }
 

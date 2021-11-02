@@ -87,7 +87,7 @@ class RatingFragment : Fragment() {
                 val  userEntry = UserEntry(1,"ddd@gmail.com","dddd")
                 insertRating(1)
                 insertComment(1 ,args.author!!, binding)
-                val action = RatingFragmentDirections.actionRatingFragmentToCommentFragment("Gamze", 1, userEntry)
+                val action = RatingFragmentDirections.actionRatingFragmentToCommentFragment( 1, userEntry)
                 Navigation.findNavController(view).navigate(action)
             }
 
