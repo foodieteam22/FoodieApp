@@ -76,15 +76,19 @@ class ReservationsFragment : Fragment(), AdapterView.OnItemSelectedListener {
             val action = ReservationsFragmentDirections.actionReservationsFragmentToMenuFragment(1)
             Navigation.findNavController(view).navigate(action)
         }
+
+        binding.btnComplete.setOnClickListener {
+
+            insertReservation(1,"İzmir Sakız Restoran","2")
+
+            val action = ReservationsFragmentDirections.actionReservationsFragmentToMenuFragment(1)
+            Navigation.findNavController(view).navigate(action)
+        }
     }
 
-    fun complete(view: View){
-
-    }
-
-    private fun insertReservation(Id: Int,restaurantName:String,desks:String, ) {
+    private fun insertReservation(Id: Int,restaurantName:String,deskNo:String, ) {
         val reservationEntry = ReservationEntry(
-            1,"İzmir Sakız Restoran","5")
+            Id,restaurantName,deskNo)
         viewModel.insertReservation(reservationEntry)
     }
 

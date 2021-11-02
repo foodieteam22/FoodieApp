@@ -8,4 +8,6 @@ class ReservationRepository(val reservationDao: ReservationDao) {
     suspend fun updateReservationRepo(reservationEntry: ReservationEntry)=reservationDao.update(reservationEntry)
 
     suspend fun deleteReservationRepo(reservationEntry: ReservationEntry)=reservationDao.delete(reservationEntry)
+
+    fun getReservationRepo(id:Int)=reservationDao.getReservation(id)
 }
