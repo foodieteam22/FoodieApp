@@ -7,13 +7,13 @@ import androidx.room.*
 interface RestaurantFeatureDao {
 
     @Insert
-    suspend fun insert(restaurantFeatureEntry :RestaurantFeatureEntry)
+    suspend fun insert(restaurantFeatureEntry: com.example.foodieapp.database.RestaurantFeatureEntry)
 
     @Delete
-    suspend fun delete(restaurantFeatureEntry :RestaurantFeatureEntry)
+    suspend fun delete(restaurantFeatureEntry: com.example.foodieapp.database.RestaurantFeatureEntry)
 
     @Update
-    suspend fun update(restaurantFeatureEntry :RestaurantFeatureEntry)
+    suspend fun update(restaurantFeatureEntry: com.example.foodieapp.database.RestaurantFeatureEntry)
 
 
 

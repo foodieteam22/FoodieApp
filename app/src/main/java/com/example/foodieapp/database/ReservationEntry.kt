@@ -10,7 +10,5 @@ import kotlinx.parcelize.Parcelize
 @Entity(tableName = "reservation_table")
 data class ReservationEntry(@PrimaryKey(autoGenerate = true)
                             var id :Int,
-                            @ColumnInfo(name = "restaurantName")
                             val restaurantName :String,
-                            @ColumnInfo(name = "deskNo")
                             val deskNo  : String): Parcelable

@@ -19,10 +19,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        window.statusBarColor = ContextCompat.getColor(this, R.color.statusBarColor)
-        getSupportActionBar()?.setBackgroundDrawable(ColorDrawable(getResources().getColor(android.R.color.transparent)));
+       // window.statusBarColor = ContextCompat.getColor(this, R.color.statusBarColor)
+       // getSupportActionBar()?.setBackgroundDrawable(ColorDrawable(getResources().getColor(android.R.color.transparent)));
       //  supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#181A1C")))
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.navigationBarColor)
+      //  window.navigationBarColor = ContextCompat.getColor(this, R.color.navigationBarColor)
     }
 
 

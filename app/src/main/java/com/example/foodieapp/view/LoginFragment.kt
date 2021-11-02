@@ -68,7 +68,7 @@ class LoginFragment : Fragment() {
 
            viewModel.getUserByEmail(currentUser.email.toString()).observe(viewLifecycleOwner){
                user=it[0]
-               val action = LoginFragmentDirections.actionLoginFragmentToRestaurantFragment(user)
+               val action = LoginFragmentDirections.actionLoginFragmentToProfileFragment(user)
                Navigation.findNavController(view).navigate(action)
 
 

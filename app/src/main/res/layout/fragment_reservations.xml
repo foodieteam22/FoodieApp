@@ -196,7 +196,6 @@
             android:layout_weight="2"
             android:textColor="@color/white"
             android:background="@drawable/button_selector_v2"
-            android:onClick="complete"
             android:text="Tamamla" />
 
     </LinearLayout>

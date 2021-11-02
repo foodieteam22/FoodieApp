@@ -10,6 +10,8 @@ import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.foodieapp.R
+import com.example.foodieapp.database.ReservationEntry
+import com.example.foodieapp.database.RestaurantFeatureEntry
 import com.example.foodieapp.database.UserEntry
 import com.example.foodieapp.databinding.FragmentProfileBinding
 import com.example.foodieapp.databinding.FragmentReservationsBinding
@@ -74,10 +76,20 @@ class ReservationsFragment : Fragment(), AdapterView.OnItemSelectedListener {
             val action = ReservationsFragmentDirections.actionReservationsFragmentToMenuFragment(1)
             Navigation.findNavController(view).navigate(action)
         }
+
+        binding.btnComplete.setOnClickListener {
+
+            insertReservation(1,"İzmir Sakız Restoran","2")
+
+            val action = ReservationsFragmentDirections.actionReservationsFragmentToMenuFragment(1)
+            Navigation.findNavController(view).navigate(action)
+        }
     }
 
-    fun complete(view: View){
-
+    private fun insertReservation(Id: Int,restaurantName:String,deskNo:String, ) {
+        val reservationEntry = ReservationEntry(
+            Id,restaurantName,deskNo)
+        viewModel.insertReservation(reservationEntry)
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

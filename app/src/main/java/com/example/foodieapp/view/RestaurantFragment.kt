@@ -3,21 +3,16 @@ package com.example.foodieapp.view
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.foodieapp.R
 import com.example.foodieapp.databinding.FragmentRestaurantBinding
-import com.example.foodieapp.model.MenuModel
 import com.example.foodieapp.viewadapter.ResturantAdapter
 import com.example.foodieapp.model.RestaurantModel
-import com.example.foodieapp.utils.ApiManager
-import com.example.foodieapp.utils.MenuService
 import com.example.foodieapp.utils.ResturantService
-import com.example.foodieapp.viewadapter.MenuAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -49,6 +44,14 @@ class RestaurantFragment : Fragment() {
         parseJSON()
     }
 
+
+
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Toast.makeText(context,"you click on hello", Toast.LENGTH_LONG).show()
+        return super.onOptionsItemSelected(item)
+    }
 
     fun parseJSON() {
 
