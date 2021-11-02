@@ -60,13 +60,21 @@ class ListReservationFragment : Fragment() {
 
         viewModel.getResByEmail(args.user.email).observe(viewLifecycleOwner){
 
+            if (!it.isEmpty()){
+                binding.tvrec.visibility=View.GONE
                 reservationArrayList.clear()
 
-            for (res in it){
-                reservationArrayList.add(res)
+                for (res in it){
+                    reservationArrayList.add(res)
+                }
+
+
+
+                bindRecyclerView(ReservationAdapter(reservationArrayList))
+
             }
 
-            bindRecyclerView(ReservationAdapter(reservationArrayList))
+
 
         }
         binding.bottomNavigationMenu.setOnNavigationItemSelectedListener {
