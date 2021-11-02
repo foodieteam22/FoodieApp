@@ -96,7 +96,7 @@
         android:label="RatingFragment" >
         <argument
             android:name="restaurantInfo"
-            app:argType="com.example.foodieapp.database.RestaurantEntry"
+            app:argType="com.example.foodieapp.model.RestaurantModel"
             app:nullable="true"
             android:defaultValue="@null" />
         <argument
@@ -156,6 +156,9 @@
         <action
             android:id="@+id/action_reservationsFragment_to_commentFragment"
             app:destination="@id/commentFragment" />
+        <argument
+            android:name="restaurant"
+            app:argType="com.example.foodieapp.model.RestaurantModel" />
     </fragment>
     <fragment
         android:id="@+id/helpFragment"
@@ -186,6 +189,9 @@
         <action
             android:id="@+id/action_restaurantDetailFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <argument
+            android:name="restaurant"
+            app:argType="com.example.foodieapp.model.RestaurantModel" />
 
     </fragment>
     <fragment

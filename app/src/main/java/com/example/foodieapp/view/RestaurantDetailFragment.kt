@@ -43,6 +43,7 @@ class RestaurantDetailFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         args = RestaurantDetailFragmentArgs.fromBundle(requireArguments())
+
         val binding = FragmentRestaurantDetailBinding.inflate(inflater)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -115,6 +116,8 @@ class RestaurantDetailFragment : Fragment() {
 
 
             }
+            binding.textView3.text= args.restaurant.name
+
 
         }
         val view = binding.root
@@ -124,7 +127,7 @@ class RestaurantDetailFragment : Fragment() {
     fun onAddReservationClick()
     {
         //val user :UserEntry = UserEntry(1,"ss","ss")
-        val action = RestaurantDetailFragmentDirections.actionDetailFragmentToReservationFragment(args.user)
+        val action = RestaurantDetailFragmentDirections.actionDetailFragmentToReservationFragment(args.user,args.restaurant)
         Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
     }
     fun onDetailMenuClick()

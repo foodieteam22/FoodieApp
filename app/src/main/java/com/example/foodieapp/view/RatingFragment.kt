@@ -22,6 +22,7 @@ import com.example.foodieapp.database.RestaurantEntry
 import com.example.foodieapp.database.UserEntry
 import com.example.foodieapp.databinding.FragmentProfileBinding
 import com.example.foodieapp.databinding.FragmentRatingBinding
+import com.example.foodieapp.model.RestaurantModel
 import com.example.foodieapp.viewmodel.CommentViewModel
 import com.example.foodieapp.viewmodel.RatingViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -55,8 +56,9 @@ class RatingFragment : Fragment() {
         var restaurantInfo=args.restaurantInfo
 
         if(restaurantInfo == null)
-            restaurantInfo= RestaurantEntry(1,"Restoran Adı", 90876457);
-        binding.tvRatingRestaurantName.setText(restaurantInfo.restaurantName)
+            restaurantInfo= RestaurantModel("1","Restoran Adı", "90876457","ee","ddd","ddd",
+                emptyList());
+        binding.tvRatingRestaurantName.setText(restaurantInfo.name)
 
         binding.ratingBarHygiene.numStars=5
         binding.ratingBarHygiene.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
@@ -82,8 +84,8 @@ class RatingFragment : Fragment() {
                 Toast.makeText(requireContext(),"Oy alanları boş geçilemez", Toast.LENGTH_LONG).show();
             }else{
                 val  userEntry = UserEntry(1,"ddd@gmail.com","dddd")
-                insertRating(restaurantInfo.id)
-                insertComment(restaurantInfo.id, "Gamze", binding)
+                insertRating(1)
+                insertComment(1 ,"Gamze", binding)
                 val action = RatingFragmentDirections.actionRatingFragmentToCommentFragment("Gamze", 1, userEntry)
                 Navigation.findNavController(view).navigate(action)
             }

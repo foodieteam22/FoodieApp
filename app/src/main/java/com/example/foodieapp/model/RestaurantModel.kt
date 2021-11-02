@@ -1,6 +1,8 @@
 package com.example.foodieapp.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class RestaurantModel(
 
@@ -27,4 +29,4 @@ data class RestaurantModel(
     @SerializedName("rest-items")
     var items: List<RestaurantDetailModel>,
 
-)
+):Serializable
