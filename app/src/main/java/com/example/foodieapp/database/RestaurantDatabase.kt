@@ -13,7 +13,9 @@ abstract class RestaurantDatabase:RoomDatabase() {
     abstract fun ratingDao():RatingDao
     abstract fun restaurantFeatureDao():RestaurantFeatureDao
     abstract fun userDao():UserDao
-   companion object
+    abstract fun reservationDao():ReservationDao
+
+    companion object
    {
        private var INSTANCE :RestaurantDatabase? =null
        fun  getDatabase(context: Context):RestaurantDatabase
