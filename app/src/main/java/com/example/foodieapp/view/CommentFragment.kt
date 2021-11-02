@@ -7,11 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.Visibility
 import com.example.foodieapp.databinding.FragmentCommentsBinding
 import com.example.foodieapp.viewadapter.CommentsAdapter
 import com.example.foodieapp.viewmodel.CommentViewModel
+import java.util.*
 
 
 class CommentFragment : Fragment() {
@@ -28,13 +31,17 @@ class CommentFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentCommentsBinding.inflate(inflater)
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
+        setViewVisibility(View.VISIBLE,View.INVISIBLE)
+
         return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        readCommentsFromDb()
+        arguments?.let {
+            readCommentsFromDb()
+        }
     }
 
     private fun readCommentsFromDb() {
@@ -42,25 +49,38 @@ class CommentFragment : Fragment() {
         if (args.restaurantId != 0)
 
             viewModel.getRestaurantComments(args.restaurantId).observe(viewLifecycleOwner) {
+
                 bindRecyclerView(CommentsAdapter(it))
             }
         else if (!TextUtils.isEmpty(args.author))
             viewModel.getCommentsByAuthor(args.author!!).observe(viewLifecycleOwner) {
+
                 bindRecyclerView(CommentsAdapter(it))
             }
         else {
-            viewModel.getAllComments().observe(viewLifecycleOwner){
-                //adapter=
+            /*viewModel.getAllComments().observe(viewLifecycleOwner){
+
                 bindRecyclerView(CommentsAdapter(it))
 
-            }
+            }*/
+            adapter= CommentsAdapter(emptyList())
         }
 
+
+    }
+
+    private fun setViewVisibility(tvVisibility: Int,recycleVisibility: Int ){
+
+            binding.tvCommentNotFound.visibility = tvVisibility
+            binding.commentsRecyclerView.visibility = recycleVisibility
     }
 
     private fun bindRecyclerView(adapter: CommentsAdapter) {
         binding.commentsRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.commentsRecyclerView.adapter = adapter
+        if(adapter.itemCount>0)
+            setViewVisibility(View.INVISIBLE,View.VISIBLE)
+
     }
 
 }
