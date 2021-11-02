@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.room.util.StringUtil
+import com.example.foodieapp.R
 import com.example.foodieapp.database.CommentEntry
 import com.example.foodieapp.database.RatingEntry
 import com.example.foodieapp.database.RestaurantEntry
@@ -56,7 +57,7 @@ class RatingFragment : Fragment() {
         var restaurantInfo=args.restaurantInfo
 
         if(restaurantInfo == null)
-            restaurantInfo= RestaurantModel("1","Restoran Adı", "4.5","ee","ddd","ddd",
+            restaurantInfo= RestaurantModel(1,"Restoran Adı", "4.5","ee","ddd","ddd",
                 emptyList());
         binding.tvRatingRestaurantName.setText(restaurantInfo.name)
 
@@ -81,11 +82,11 @@ class RatingFragment : Fragment() {
         binding.btnRatingOk.setOnClickListener {
 
             if(avgRate.equals(0.0F)) {
-                Toast.makeText(requireContext(),"Oy alanları boş geçilemez", Toast.LENGTH_LONG).show();
+                Toast.makeText(requireContext(),getString(R.string.rating_warning_message), Toast.LENGTH_LONG).show();
             }else{
                 val  userEntry = UserEntry(1,"ddd@gmail.com","dddd")
                 insertRating(1)
-                insertComment(1 ,"Gamze", binding)
+                insertComment(1 ,args.author!!, binding)
                 val action = RatingFragmentDirections.actionRatingFragmentToCommentFragment("Gamze", 1, userEntry)
                 Navigation.findNavController(view).navigate(action)
             }
