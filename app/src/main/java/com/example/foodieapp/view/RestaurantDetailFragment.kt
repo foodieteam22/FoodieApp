@@ -35,6 +35,8 @@ class RestaurantDetailFragment : Fragment() {
     private lateinit var featureList: ArrayList<RestaurantFeatureEntry>
     private lateinit var user: UserEntry
     private lateinit var args: RestaurantDetailFragmentArgs
+    private lateinit var restaurantInfo : RestaurantEntry
+    private lateinit var args: RestaurantDetailFragmentArgs
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -78,18 +80,21 @@ class RestaurantDetailFragment : Fragment() {
         binding.apply {
 
             binding.restaurantFeatureRecyclerView.adapter = adapter
-            tvComments.setOnClickListener{
-                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment(args.user.email,1,args.user)
+            layoutResDetailComments.setOnClickListener{
+                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment("Serkan",1)
                 Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
 
             }
             val url = "https://www.gstatic.com/webp/gallery/1.jpg"
-            tvTableScheme.setOnClickListener{
+            layoutResDetailTableScheme.setOnClickListener{
                 val action = RestaurantDetailFragmentDirections.actionDetailFragmentToTableSchemeFragment(url)
                 Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
             }
             floatingActionButtonAddReservation.setOnClickListener{
                 onAddReservationClick()
+            }
+            layoutResDetailMenu.setOnClickListener{
+                onDetailMenuClick()
             }
             bottomNavigationMenu.setOnNavigationItemSelectedListener {
                 if (it.itemId== R.id.profile){
@@ -125,6 +130,13 @@ class RestaurantDetailFragment : Fragment() {
         val action = RestaurantDetailFragmentDirections.actionDetailFragmentToReservationFragment(args.user,args.restaurant)
         Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
     }
+    fun onDetailMenuClick()
+    {
+        val user :UserEntry = UserEntry(1,"ss","ss")
+        val action = RestaurantDetailFragmentDirections.actionDetailFragmentToMenuFragment(1)
+        Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
