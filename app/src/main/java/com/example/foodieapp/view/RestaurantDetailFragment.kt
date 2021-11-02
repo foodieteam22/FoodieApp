@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.navigation.fragment.findNavController
 import com.example.foodieapp.R
 import com.example.foodieapp.database.CommentEntry
+import com.example.foodieapp.database.RestaurantEntry
 import com.example.foodieapp.database.RestaurantFeatureEntry
 import com.example.foodieapp.database.UserEntry
 import com.example.foodieapp.databinding.FragmentCommentsBinding
@@ -34,6 +35,8 @@ class RestaurantDetailFragment : Fragment() {
     private lateinit var adapter: RestaurantFeatureEntryAdapter
     private lateinit var featureList: ArrayList<RestaurantFeatureEntry>
     private lateinit var user: UserEntry
+    private lateinit var args: RestaurantDetailFragmentArgs
+    private lateinit var restaurantInfo : RestaurantEntry
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,33 +45,69 @@ class RestaurantDetailFragment : Fragment() {
         val binding = FragmentRestaurantDetailBinding.inflate(inflater)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+        //args = RestaurantDetailFragmentArgs.fromBundle(requireArguments())
+        //restaurantInfo = args.restaurantInfo
 
-        featureList = arrayListOf<RestaurantFeatureEntry>()
-        featureList.add(RestaurantFeatureEntry(
-            0,1,false,"Oyun Parkı"))
-        featureList.add(RestaurantFeatureEntry(
-            0,1,true,"Oyun Parkı1"))
-        featureList.add(RestaurantFeatureEntry(
-            0,1,true,"Oyun Parkı2"))
-        featureList.add(RestaurantFeatureEntry(
-            0,1,true,"Oyun Parkı3"))
-        featureList.add(RestaurantFeatureEntry(
-            0,1,true,"Oyun Parkı4"))
-        featureList.add(RestaurantFeatureEntry(
-            0,1,true,"Oyun Parkı4"))
+            featureList = arrayListOf<RestaurantFeatureEntry>()
+            featureList.add(
+                RestaurantFeatureEntry(
+                    0, 1, false, "Oyun Parkı"
+                )
+            )
+            featureList.add(
+                RestaurantFeatureEntry(
+                    0, 1, true, "Oyun Parkı1"
+                )
+            )
+            featureList.add(
+                RestaurantFeatureEntry(
+                    0, 1, true, "Oyun Parkı2"
+                )
+            )
+            featureList.add(
+                RestaurantFeatureEntry(
+                    0, 1, true, "Oyun Parkı3"
+                )
+            )
+            featureList.add(
+                RestaurantFeatureEntry(
+                    0, 1, true, "Oyun Parkı4"
+                )
+            )
+            featureList.add(
+                RestaurantFeatureEntry(
+                    0, 1, true, "Oyun Parkı4"
+                )
+            )
 
-        featureList.add(RestaurantFeatureEntry(
-            0,1,false,"Oyun Parkı4"))
+            featureList.add(
+                RestaurantFeatureEntry(
+                    0, 1, false, "Oyun Parkı4"
+                )
+            )
 
-        featureList.add(RestaurantFeatureEntry(
-            0,1,false,"Oyun Parkı4"))
+            featureList.add(
+                RestaurantFeatureEntry(
+                    0, 1, false, "Oyun Parkı4"
+                )
+            )
 
-        featureList.add(RestaurantFeatureEntry(
-            0,1,true,"Oyun Parkı4"))
-        featureList.add(RestaurantFeatureEntry(
-            0,1,true,"Oyun Parkı4"))
-        featureList.add(RestaurantFeatureEntry(
-            0,1,true,"Oyun Parkı4"))
+            featureList.add(
+                RestaurantFeatureEntry(
+                    0, 1, true, "Oyun Parkı4"
+                )
+            )
+            featureList.add(
+                RestaurantFeatureEntry(
+                    0, 1, true, "Oyun Parkı4"
+                )
+            )
+            featureList.add(
+                RestaurantFeatureEntry(
+                    0, 1, true, "Oyun Parkı4"
+                )
+            )
+
 
         adapter= RestaurantFeatureEntryAdapter(featureList)
 
@@ -109,6 +148,7 @@ class RestaurantDetailFragment : Fragment() {
         val action = RestaurantDetailFragmentDirections.actionDetailFragmentToMenuFragment(1)
         Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

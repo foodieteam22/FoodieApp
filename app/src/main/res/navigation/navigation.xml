@@ -133,7 +133,9 @@
         android:id="@+id/restaurantDetailFragment"
         android:name="com.example.foodieapp.view.RestaurantDetailFragment"
         android:label="RestaurantDetailFragment" >
-
+        <argument
+            android:name="restaurantInfo"
+            app:argType="com.example.foodieapp.database.RestaurantEntry" />
         <action
             android:id="@+id/action_detailFragment_to_commentFragment"
             app:destination="@id/commentFragment" />
