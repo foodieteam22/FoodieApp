@@ -56,7 +56,7 @@ class RatingFragment : Fragment() {
         var restaurantInfo=args.restaurantInfo
 
         if(restaurantInfo == null)
-            restaurantInfo= RestaurantModel("1","Restoran Adı", "90876457","ee","ddd","ddd",
+            restaurantInfo= RestaurantModel("1","Restoran Adı", "4.5","ee","ddd","ddd",
                 emptyList());
         binding.tvRatingRestaurantName.setText(restaurantInfo.name)
 
@@ -69,13 +69,13 @@ class RatingFragment : Fragment() {
         binding.ratingBarService.numStars=5
         binding.ratingBarService.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             serviceRate= ratingBar.rating
-            avgRate+=hygieneRate/3
+            avgRate+=serviceRate/3
         }
 
         binding.ratingBarTaste.numStars=5
         binding.ratingBarTaste.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             tasteRate= ratingBar.rating
-            avgRate+=hygieneRate/3
+            avgRate+=tasteRate/3
         }
 
         binding.btnRatingOk.setOnClickListener {
