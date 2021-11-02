@@ -31,7 +31,7 @@ class CommentFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentCommentsBinding.inflate(inflater)
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
-        setViewVisibility(View.VISIBLE,View.INVISIBLE)
+        setViewVisibility(View.INVISIBLE,View.INVISIBLE)
 
         return binding.root
 
@@ -80,6 +80,8 @@ class CommentFragment : Fragment() {
         binding.commentsRecyclerView.adapter = adapter
         if(adapter.itemCount>0)
             setViewVisibility(View.INVISIBLE,View.VISIBLE)
+        else
+            setViewVisibility(View.VISIBLE,View.INVISIBLE)
 
     }
 
