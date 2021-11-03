@@ -72,7 +72,7 @@ class CommentFragment : Fragment() {
                 bindRecyclerView(CommentsAdapter(it))
             }
         else if (!TextUtils.isEmpty(args.user.email))
-            viewModel.getCommentsByAuthor(args.user.email!!).observe(viewLifecycleOwner) {
+            viewModel.getCommentsByAuthor(args.user.email).observe(viewLifecycleOwner) {
                 bindRecyclerView(CommentsAdapter(it))
             }
         else {

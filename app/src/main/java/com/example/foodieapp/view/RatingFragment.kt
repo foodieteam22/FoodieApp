@@ -55,10 +55,13 @@ class RatingFragment : Fragment() {
 
         val args = RatingFragmentArgs.fromBundle(requireArguments())
         var restaurantInfo=args.restaurantInfo
+        val  userEntry =args.userInfo
 
         if(restaurantInfo == null)
             restaurantInfo= RestaurantModel(1,"Restoran Adı", "4.5","ee","ddd","ddd",
                 emptyList());
+
+
         binding.tvRatingRestaurantName.setText(restaurantInfo.name)
 
         binding.ratingBarHygiene.numStars=5
@@ -84,10 +87,9 @@ class RatingFragment : Fragment() {
             if(avgRate.equals(0.0F)) {
                 Toast.makeText(requireContext(),getString(R.string.rating_warning_message), Toast.LENGTH_LONG).show();
             }else{
-                val  userEntry = UserEntry(1,"ddd@gmail.com","dddd")
-                insertRating(1)
-                insertComment(1 ,args.author!!, binding)
-                val action = RatingFragmentDirections.actionRatingFragmentToCommentFragment( 1, userEntry)
+                insertRating(restaurantInfo.id)
+                insertComment(restaurantInfo.id ,args.userInfo.email, binding)
+                val action = RatingFragmentDirections.actionRatingFragmentToRestaurantDetailFragment(  userEntry,restaurantInfo)
                 Navigation.findNavController(view).navigate(action)
             }
 

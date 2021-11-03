@@ -138,7 +138,7 @@ class RestaurantDetailFragment : Fragment() {
     }
     fun onDetailRateClick()
     {
-        val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToRatingFragment(args.restaurant,args.user.email)
+        val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToRatingFragment(args.restaurant,args.user)
         Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
     }
     fun onAddReservationClick()
