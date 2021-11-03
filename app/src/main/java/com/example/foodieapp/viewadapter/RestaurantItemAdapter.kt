@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.foodieapp.databinding.RestaurantRowItemLayoutBinding
 import com.example.foodieapp.model.RestaurantDetailModel
 
-private const val limit = 3
+private const val limit = 2
 public class RestaurantItemAdapter(
     private val restItemData: List<RestaurantDetailModel>
     ): RecyclerView.Adapter<RestaurantItemAdapter.ViewHolder>() {
