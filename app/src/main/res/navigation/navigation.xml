@@ -205,6 +205,9 @@
         <action
             android:id="@+id/action_restaurantDetailFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_restaurantDetailFragment_to_ratingFragment"
+            app:destination="@id/ratingFragment" />
 
     </fragment>
     <fragment

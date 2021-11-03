@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.navigation.fragment.findNavController
 import com.example.foodieapp.R
 import com.example.foodieapp.database.CommentEntry
+import com.example.foodieapp.database.RestaurantEntry
 import com.example.foodieapp.database.RestaurantFeatureEntry
 import com.example.foodieapp.database.UserEntry
 import com.example.foodieapp.databinding.FragmentCommentsBinding
@@ -80,14 +81,11 @@ class RestaurantDetailFragment : Fragment() {
 
             binding.restaurantFeatureRecyclerView.adapter = adapter
             layoutResDetailComments.setOnClickListener{
-                //val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment("Serkan",1)
-                //Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
-
+               onCommentsClick()
             }
-            val url = "https://www.gstatic.com/webp/gallery/1.jpg"
+
             layoutResDetailTableScheme.setOnClickListener{
-                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToTableSchemeFragment(url)
-                Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
+                onTableSchemeClick()
             }
             floatingActionButtonAddReservation.setOnClickListener{
                 onAddReservationClick()
@@ -127,9 +125,21 @@ class RestaurantDetailFragment : Fragment() {
         return view
 
     }
+    fun onCommentsClick()
+    {
+        val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment(args.restaurant.id,args.user)
+        Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
+    }
+    fun onTableSchemeClick()
+    {
+        val url = "https://www.gstatic.com/webp/gallery/1.jpg"
+        val action = RestaurantDetailFragmentDirections.actionDetailFragmentToTableSchemeFragment(url,args.user)
+        Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
+    }
     fun onDetailRateClick()
     {
-
+        val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToRatingFragment(args.restaurant,args.user.email)
+        Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
     }
     fun onAddReservationClick()
     {
@@ -139,9 +149,8 @@ class RestaurantDetailFragment : Fragment() {
     }
     fun onDetailMenuClick()
     {
-        //val user :UserEntry = UserEntry(1,"ss","ss")
-        //val action = RestaurantDetailFragmentDirections.actionDetailFragmentToMenuFragment(1)
-        //Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
+        val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToMenuFragment(args.restaurant.id)
+        Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
     }
 
 
