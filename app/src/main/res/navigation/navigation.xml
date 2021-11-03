@@ -100,14 +100,15 @@
             app:argType="com.example.foodieapp.model.RestaurantModel"
             app:nullable="true"
             android:defaultValue="@null" />
-        <argument
-            android:name="author"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="Gamze" />
         <action
             android:id="@+id/action_ratingFragment_to_commentFragment"
             app:destination="@id/commentFragment" />
+        <argument
+            android:name="userInfo"
+            app:argType="com.example.foodieapp.database.UserEntry" />
+        <action
+            android:id="@+id/action_ratingFragment_to_restaurantDetailFragment"
+            app:destination="@id/restaurantDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/restaurantFragment"
