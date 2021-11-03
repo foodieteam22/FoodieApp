@@ -169,7 +169,7 @@ class RestaurantFragment : Fragment() {
                         adapter = ResturantAdapter(context, restData, args.user)
                         binding.resturantrecyclerView.layoutManager =LinearLayoutManager(context)
                         binding.resturantrecyclerView.adapter =adapter
-
+                        count = 1
                     }
 
                     else
