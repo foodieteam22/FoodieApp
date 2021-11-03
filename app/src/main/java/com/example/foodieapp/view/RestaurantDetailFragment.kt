@@ -35,8 +35,8 @@ class RestaurantDetailFragment : Fragment() {
     private lateinit var adapter: RestaurantFeatureEntryAdapter
     private lateinit var featureList: ArrayList<RestaurantFeatureEntry>
     private lateinit var user: UserEntry
-    private lateinit var restaurantInfo : RestaurantEntry
     private lateinit var args: RestaurantDetailFragmentArgs
+    private lateinit var restaurantInfo : RestaurantEntry
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -81,20 +81,20 @@ class RestaurantDetailFragment : Fragment() {
 
             binding.restaurantFeatureRecyclerView.adapter = adapter
             layoutResDetailComments.setOnClickListener{
-                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment(1,args.user)
-                Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
-
+               onCommentsClick()
             }
-            val url = "https://www.gstatic.com/webp/gallery/1.jpg"
+
             layoutResDetailTableScheme.setOnClickListener{
-                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToTableSchemeFragment(url,args.user)
-                Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
+                onTableSchemeClick()
             }
             floatingActionButtonAddReservation.setOnClickListener{
                 onAddReservationClick()
             }
             layoutResDetailMenu.setOnClickListener{
                 onDetailMenuClick()
+            }
+            layoutResDetailRate.setOnClickListener{
+                onDetailRateClick()
             }
             bottomNavigationMenu.setOnNavigationItemSelectedListener {
                 if (it.itemId== R.id.profile){
@@ -116,13 +116,30 @@ class RestaurantDetailFragment : Fragment() {
 
 
             }
-            binding.textView3.text= args.restaurant.name
+            binding.tvDetailRestName.text= args.restaurant.name
+            binding.tvDetailRestRate.text= args.restaurant.rating
 
 
         }
         val view = binding.root
         return view
 
+    }
+    fun onCommentsClick()
+    {
+        val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment(args.restaurant.id,args.user)
+        Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
+    }
+    fun onTableSchemeClick()
+    {
+        val url = "https://www.gstatic.com/webp/gallery/1.jpg"
+        val action = RestaurantDetailFragmentDirections.actionDetailFragmentToTableSchemeFragment(url,args.user)
+        Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
+    }
+    fun onDetailRateClick()
+    {
+        val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToRatingFragment(args.restaurant,args.user.email)
+        Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
     }
     fun onAddReservationClick()
     {
@@ -132,8 +149,7 @@ class RestaurantDetailFragment : Fragment() {
     }
     fun onDetailMenuClick()
     {
-        val user :UserEntry = UserEntry(1,"ss","ss")
-        val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToMenuFragment(1)
+        val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToMenuFragment(args.restaurant.id)
         Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
     }
 
