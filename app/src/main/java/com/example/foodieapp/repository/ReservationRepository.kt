@@ -1,5 +1,6 @@
 package com.example.foodieapp.repository
 
+import androidx.lifecycle.LiveData
 import com.example.foodieapp.database.ReservationDao
 import com.example.foodieapp.database.ReservationEntry
 
@@ -10,4 +11,7 @@ class ReservationRepository(val reservationDao: ReservationDao) {
     suspend fun deleteReservationRepo(reservationEntry: ReservationEntry)=reservationDao.delete(reservationEntry)
 
     fun getResEmail(email: String)=reservationDao.getResByEmail(email)
+
+
+
 }

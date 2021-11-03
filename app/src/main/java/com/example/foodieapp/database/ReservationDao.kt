@@ -11,6 +11,7 @@ interface ReservationDao {
     @Delete
     suspend fun delete(reservationEntry :com.example.foodieapp.database.ReservationEntry)
 
+
     @Update
     suspend fun update(reservationEntry :com.example.foodieapp.database.ReservationEntry)
 

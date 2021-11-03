@@ -87,8 +87,8 @@ class ReservationsFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 Navigation.findNavController(view).navigate(action)
 
             }
-            if (it.itemId== R.id.comment){
-                val action = ReservationsFragmentDirections.actionReservationsFragmentToCommentFragment(0,args.user)
+            if (it.itemId== R.id.booking){
+                val action = ReservationsFragmentDirections.actionReservationsFragmentToListReservationFragment(args.user)
                 Navigation.findNavController(view).navigate(action)
 
             }
@@ -102,10 +102,18 @@ class ReservationsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         }
         binding.btnComplete.setOnClickListener {
+            val restaurantName = args.restaurant.name
+            val email= args.user.email
+            val deskNo= binding.spinnerDesk.selectedItem.toString()
+            val personCount = binding.spinnerPersonCount.selectedItem.toString()
+            val date = binding.spinnerHour.selectedItem.toString()
             val reservationEntry = ReservationEntry(
-                0,"Sakiz Restoran",args.user.email,"5")
+                0,restaurantName,email,deskNo,personCount,date)
            viewModel.insertReservation(reservationEntry)
             Toast.makeText(requireContext(), "OK", Toast.LENGTH_SHORT).show()
+
+            val action= ReservationsFragmentDirections.actionReservationsFragmentToListReservationFragment(args.user)
+            Navigation.findNavController(view).navigate(action)
         }
         binding.etRestaurantName.text=args.restaurant.name
         binding.progressBarHorizontal.progress=args.restaurant.ratio.toInt()

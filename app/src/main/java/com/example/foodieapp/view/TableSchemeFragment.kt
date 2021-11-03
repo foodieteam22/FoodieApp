@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.example.foodieapp.R
 import com.example.foodieapp.databinding.*
 import com.example.foodieapp.utils.downloadImage
@@ -47,6 +48,27 @@ class TableSchemeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.imgTableScheme?.downloadImage(args.tableSchemeUrl, makePlaceholder(requireContext()))
+
+        binding.bottomNavigationMenu.setOnNavigationItemSelectedListener {
+            if (it.itemId== R.id.home){
+                val action = TableSchemeFragmentDirections.actionTableSchemeFragmentToRestaurantFragment(args.user)
+                Navigation.findNavController(view).navigate(action)
+
+            }
+            if (it.itemId== R.id.profile){
+                val action = TableSchemeFragmentDirections.actionTableSchemeFragmentToProfileFragment(args.user)
+                Navigation.findNavController(view).navigate(action)
+
+            }
+            if (it.itemId== R.id.booking){
+                val action = TableSchemeFragmentDirections.actionTableSchemeFragmentToListReservationFragment(args.user)
+                Navigation.findNavController(view).navigate(action)
+
+            }
+            true
+
+
+        }
 
 
     }
