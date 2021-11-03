@@ -25,6 +25,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.roundToInt
 
 class RestaurantFragment : Fragment() {
     private lateinit var adapter: ResturantAdapter
@@ -155,6 +156,13 @@ class RestaurantFragment : Fragment() {
 
                     if (response.code() == 200) {
                         val restDataList = response.body()!!
+                        if(restDataList!=null)
+                        {
+                            Collections.sort(restDataList, object : Comparator<RestaurantModel> {
+                                override fun compare(o1: RestaurantModel?, o2: RestaurantModel?): Int = o2!!.rating.toFloat().roundToInt() - o1!!.rating.toFloat().roundToInt()
+                            })
+
+                        }
                         restData = restDataList
                         tempData =ArrayList<RestaurantModel>()
                         tempData.addAll(restData)
