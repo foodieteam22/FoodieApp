@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.foodieapp.databinding.RestaurantRowItemLayoutBinding
 import com.example.foodieapp.model.RestaurantDetailModel
 
+private const val limit = 3
 public class RestaurantItemAdapter(
     private val restItemData: List<RestaurantDetailModel>
     ): RecyclerView.Adapter<RestaurantItemAdapter.ViewHolder>() {
@@ -37,6 +38,14 @@ public class RestaurantItemAdapter(
     }
 
     override fun getItemCount(): Int {
-        return restItemData.count()
+        if(restItemData.count() > limit)
+        {
+            return limit;
+        }
+        else
+        {
+            return restItemData.count()
+        }
+
     }
 }
