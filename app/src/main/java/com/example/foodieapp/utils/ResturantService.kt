@@ -8,6 +8,6 @@ import retrofit2.http.Url
 interface ResturantService
 {
     @GET
-    fun getRest(@Url url:String): Call<List<RestaurantModel>>
+    fun getRest(@Url url:String): Call<ArrayList<RestaurantModel>>
 
 }
