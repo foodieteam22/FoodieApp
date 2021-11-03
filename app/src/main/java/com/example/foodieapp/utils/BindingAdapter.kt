@@ -5,6 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import com.example.foodieapp.R
 
 
@@ -20,3 +21,8 @@ import com.example.foodieapp.R
             }
         }
     }
+
+@BindingAdapter("imageUrl")
+fun setImageUrl(imageView: ImageView, url: String?) {
+    Glide.with(imageView.context).load(url).into(imageView)
+}

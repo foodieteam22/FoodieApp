@@ -33,6 +33,8 @@ data class RestaurantModel(
     @SerializedName("county")
     val county: String,
 
+    @SerializedName("image")
+    val image: String,
 
     @SerializedName("rest-items")
     var items: List<RestaurantDetailModel>,

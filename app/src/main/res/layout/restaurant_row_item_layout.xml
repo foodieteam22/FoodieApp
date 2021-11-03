@@ -25,6 +25,7 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/tick_icon"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:setRestDetailIcon="@{restaurantDetailModel.hasFeature}"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
