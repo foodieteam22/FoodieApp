@@ -73,7 +73,7 @@ class ReservationsFragment : Fragment(), AdapterView.OnItemSelectedListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnShowDesk.setOnClickListener {
-            val action = ReservationsFragmentDirections.actionReservationsFragmentToTableSchemeFragment("https://www.gstatic.com/webp/gallery/1.jpg")
+            val action = ReservationsFragmentDirections.actionReservationsFragmentToTableSchemeFragment(args.restaurant.imageResource,args.user)
             Navigation.findNavController(view).navigate(action)
         }
 
@@ -127,11 +127,6 @@ class ReservationsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     }
 
-    private fun insertReservation( ) {
-        val reservationEntry = ReservationEntry(
-            7,"İzmir Sakız Restoran",args.user.email,"5")
-        viewModel.insertReservation(reservationEntry)
-    }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 

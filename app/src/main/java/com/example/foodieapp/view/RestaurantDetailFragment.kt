@@ -81,13 +81,13 @@ class RestaurantDetailFragment : Fragment() {
 
             binding.restaurantFeatureRecyclerView.adapter = adapter
             layoutResDetailComments.setOnClickListener{
-                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment("Serkan",1)
+                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment(1,args.user)
                 Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
 
             }
             val url = "https://www.gstatic.com/webp/gallery/1.jpg"
             layoutResDetailTableScheme.setOnClickListener{
-                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToTableSchemeFragment(url)
+                val action = RestaurantDetailFragmentDirections.actionDetailFragmentToTableSchemeFragment(url,args.user)
                 Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
             }
             floatingActionButtonAddReservation.setOnClickListener{
