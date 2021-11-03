@@ -32,6 +32,8 @@ class CommentFragment : Fragment() {
         args = CommentFragmentArgs.fromBundle(requireArguments())
         _binding = FragmentCommentsBinding.inflate(inflater)
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
+        setViewVisibility(View.INVISIBLE,View.INVISIBLE)
+
         return binding.root
 
     }
@@ -51,6 +53,11 @@ class CommentFragment : Fragment() {
                 Navigation.findNavController(view).navigate(action)
 
             }
+            if (it.itemId== R.id.booking){
+                val action = CommentFragmentDirections.actionCommentFragmentToListReservationFragment(args.user)
+                Navigation.findNavController(view).navigate(action)
+
+            }
             true
 
 
@@ -64,8 +71,8 @@ class CommentFragment : Fragment() {
             viewModel.getRestaurantComments(args.restaurantId).observe(viewLifecycleOwner) {
                 bindRecyclerView(CommentsAdapter(it))
             }
-        else if (!TextUtils.isEmpty(args.author))
-            viewModel.getCommentsByAuthor(args.author!!).observe(viewLifecycleOwner) {
+        else if (!TextUtils.isEmpty(args.user.email))
+            viewModel.getCommentsByAuthor(args.user.email!!).observe(viewLifecycleOwner) {
                 bindRecyclerView(CommentsAdapter(it))
             }
         else {
@@ -81,6 +88,15 @@ class CommentFragment : Fragment() {
     private fun bindRecyclerView(adapter: CommentsAdapter) {
         binding.commentsRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.commentsRecyclerView.adapter = adapter
+        if(adapter.itemCount>0)
+            setViewVisibility(View.INVISIBLE,View.VISIBLE)
+        else
+            setViewVisibility(View.VISIBLE,View.INVISIBLE)
     }
 
+    private fun setViewVisibility(tvVisibility: Int,recycleVisibility: Int ){
+
+        binding.tvCommentNotFound.visibility = tvVisibility
+        binding.commentsRecyclerView.visibility = recycleVisibility
+    }
 }

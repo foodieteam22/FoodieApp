@@ -53,8 +53,8 @@ class RestaurantFragment : Fragment() {
                 Navigation.findNavController(view).navigate(action)
 
             }
-            if (it.itemId== R.id.comment){
-                val action = RestaurantFragmentDirections.actionRestaurantFragmentToCommentFragment(args.user.email,0,args.user)
+            if (it.itemId== R.id.booking){
+                val action = RestaurantFragmentDirections.actionRestaurantFragmentToListReservationFragment(args.user)
                 Navigation.findNavController(view).navigate(action)
 
             }

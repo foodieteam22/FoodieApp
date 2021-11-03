@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="Ana sayfa" android:icon="@drawable/ic_home" android:id="@+id/home"/>
-    <item android:title="Yorumlarım" android:icon="@drawable/ic_comment" android:id="@+id/comment" />
+    <item android:title="Rezervasyonlarım" android:icon="@drawable/ic_book" android:id="@+id/booking" />
     <item android:title="Profil" android:icon="@drawable/ic_person" android:id="@+id/profile"/>
 
 </menu>

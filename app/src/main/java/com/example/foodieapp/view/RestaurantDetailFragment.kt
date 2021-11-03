@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.navigation.fragment.findNavController
 import com.example.foodieapp.R
 import com.example.foodieapp.database.CommentEntry
-import com.example.foodieapp.database.RestaurantEntry
 import com.example.foodieapp.database.RestaurantFeatureEntry
 import com.example.foodieapp.database.UserEntry
 import com.example.foodieapp.databinding.FragmentCommentsBinding
@@ -105,8 +104,8 @@ class RestaurantDetailFragment : Fragment() {
                     Navigation.findNavController(requireView()).navigate(action)
 
                 }
-                if (it.itemId== R.id.comment){
-                    val action = RestaurantDetailFragmentDirections.actionDetailFragmentToCommentFragment(args.user.email,0,args.user)
+                if (it.itemId== R.id.booking){
+                    val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToListReservationFragment(args.user)
                     Navigation.findNavController(requireView()).navigate(action)
 
                 }

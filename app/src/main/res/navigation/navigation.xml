@@ -66,6 +66,9 @@
         <action
             android:id="@+id/action_profileFragment_self"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_listReservationFragment"
+            app:destination="@id/listReservationFragment" />
     </fragment>
     <fragment
         android:id="@+id/commentFragment"
@@ -74,11 +77,6 @@
         <action
             android:id="@+id/action_commentFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
-        <argument
-            android:name="author"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="Gamze" />
         <argument
             android:name="restaurantId"
             app:argType="integer"
@@ -89,6 +87,9 @@
         <action
             android:id="@+id/action_commentFragment_to_restaurantFragment"
             app:destination="@id/restaurantFragment" />
+        <action
+            android:id="@+id/action_commentFragment_to_listReservationFragment"
+            app:destination="@id/listReservationFragment" />
     </fragment>
     <fragment
         android:id="@+id/ratingFragment"
@@ -124,6 +125,9 @@
         <action
             android:id="@+id/action_restaurantFragment_to_commentFragment"
             app:destination="@id/commentFragment" />
+        <action
+            android:id="@+id/action_restaurantFragment_to_listReservationFragment"
+            app:destination="@id/listReservationFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
@@ -159,6 +163,9 @@
         <argument
             android:name="restaurant"
             app:argType="com.example.foodieapp.model.RestaurantModel" />
+        <action
+            android:id="@+id/action_reservationsFragment_to_listReservationFragment"
+            app:destination="@id/listReservationFragment" />
     </fragment>
     <fragment
         android:id="@+id/helpFragment"
@@ -192,6 +199,12 @@
         <argument
             android:name="restaurant"
             app:argType="com.example.foodieapp.model.RestaurantModel" />
+        <action
+            android:id="@+id/action_restaurantDetailFragment_to_listReservationFragment"
+            app:destination="@id/listReservationFragment" />
+        <action
+            android:id="@+id/action_restaurantDetailFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
 
     </fragment>
     <fragment
@@ -201,6 +214,18 @@
         <argument
             android:name="table_scheme_url"
             app:argType="string" />
+        <action
+            android:id="@+id/action_tableSchemeFragment_to_listReservationFragment"
+            app:destination="@id/listReservationFragment" />
+        <argument
+            android:name="user"
+            app:argType="com.example.foodieapp.database.UserEntry" />
+        <action
+            android:id="@+id/action_tableSchemeFragment_to_restaurantFragment"
+            app:destination="@id/restaurantFragment" />
+        <action
+            android:id="@+id/action_tableSchemeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
 
     </fragment>
     <fragment
@@ -211,5 +236,11 @@
         <argument
             android:name="user"
             app:argType="com.example.foodieapp.database.UserEntry" />
+        <action
+            android:id="@+id/action_listReservationFragment_to_restaurantFragment"
+            app:destination="@id/restaurantFragment" />
+        <action
+            android:id="@+id/action_listReservationFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 </navigation>
