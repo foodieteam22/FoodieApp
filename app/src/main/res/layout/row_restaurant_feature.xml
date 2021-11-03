@@ -6,7 +6,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="restaurantFeatureEntry"
-            type="com.example.foodieapp.database.RestaurantFeatureEntry" />
+            type="com.example.foodieapp.model.RestaurantDetailModel" />
 
     </data>
     <androidx.cardview.widget.CardView
@@ -43,7 +43,7 @@ xmlns:tools="http://schemas.android.com/tools">
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="@{restaurantFeatureEntry.featureDescription}"
+                android:text="@{restaurantFeatureEntry.name}"
                 android:textSize="8sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

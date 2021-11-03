@@ -24,6 +24,14 @@ data class RestaurantModel(
     @SerializedName("imageResource")
     val imageResource: String,
 
+    @SerializedName("workingHours")
+    val workingHours: String,
+
+    @SerializedName("city")
+    val city: String,
+
+    @SerializedName("county")
+    val county: String,
 
 
     @SerializedName("rest-items")

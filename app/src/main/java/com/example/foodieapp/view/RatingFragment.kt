@@ -58,7 +58,7 @@ class RatingFragment : Fragment() {
 
         if(restaurantInfo == null)
             restaurantInfo= RestaurantModel(1,"Restoran Adı", "4.5","ee","ddd","ddd",
-                emptyList());
+                "","","",emptyList());
         binding.tvRatingRestaurantName.setText(restaurantInfo.name)
 
         binding.ratingBarHygiene.numStars=5

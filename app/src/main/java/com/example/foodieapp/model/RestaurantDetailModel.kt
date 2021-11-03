@@ -9,7 +9,8 @@ data class RestaurantDetailModel (
 
     @SerializedName("name")
     val name: String,
-
+    @SerializedName("hasFeature")
+    var hasFeature:Boolean,
 
 
     )

@@ -8,12 +8,13 @@ import com.example.foodieapp.databinding.RowRestaurantFeatureBinding
 import com.example.foodieapp.database.RestaurantFeatureEntry
 import com.example.foodieapp.databinding.MenuRowLayoutBinding
 import com.example.foodieapp.model.MenuModel
+import com.example.foodieapp.model.RestaurantDetailModel
 
-class RestaurantFeatureEntryAdapter (private val featuresData: List<RestaurantFeatureEntry>) : RecyclerView.Adapter<RestaurantFeatureEntryAdapter.ViewHolder>() {
+class RestaurantFeatureEntryAdapter (private val featuresData: List<RestaurantDetailModel>) : RecyclerView.Adapter<RestaurantFeatureEntryAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: RowRestaurantFeatureBinding) : RecyclerView.ViewHolder(binding.root)
     {
-        fun bind (restaurantFeatureEntry: RestaurantFeatureEntry) {
+        fun bind (restaurantFeatureEntry: RestaurantDetailModel) {
             binding.restaurantFeatureEntry = restaurantFeatureEntry
 
             binding.executePendingBindings()

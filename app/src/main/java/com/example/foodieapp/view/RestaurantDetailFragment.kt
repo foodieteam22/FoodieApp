@@ -48,34 +48,7 @@ class RestaurantDetailFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        featureList = arrayListOf<RestaurantFeatureEntry>()
-        featureList.add(RestaurantFeatureEntry(
-            0,1,false,"Oyun Parkı"))
-        featureList.add(RestaurantFeatureEntry(
-            0,1,true,"Oyun Parkı1"))
-        featureList.add(RestaurantFeatureEntry(
-            0,1,true,"Oyun Parkı2"))
-        featureList.add(RestaurantFeatureEntry(
-            0,1,true,"Oyun Parkı3"))
-        featureList.add(RestaurantFeatureEntry(
-            0,1,true,"Oyun Parkı4"))
-        featureList.add(RestaurantFeatureEntry(
-            0,1,true,"Oyun Parkı4"))
-
-        featureList.add(RestaurantFeatureEntry(
-            0,1,false,"Oyun Parkı4"))
-
-        featureList.add(RestaurantFeatureEntry(
-            0,1,false,"Oyun Parkı4"))
-
-        featureList.add(RestaurantFeatureEntry(
-            0,1,true,"Oyun Parkı4"))
-        featureList.add(RestaurantFeatureEntry(
-            0,1,true,"Oyun Parkı4"))
-        featureList.add(RestaurantFeatureEntry(
-            0,1,true,"Oyun Parkı4"))
-
-        adapter= RestaurantFeatureEntryAdapter(featureList)
+        adapter= RestaurantFeatureEntryAdapter(args.restaurant.items)
 
         binding.apply {
 
@@ -118,7 +91,8 @@ class RestaurantDetailFragment : Fragment() {
             }
             binding.tvDetailRestName.text= args.restaurant.name
             binding.tvDetailRestRate.text= args.restaurant.rating
-
+            binding.tvDeatilLocation.text = args.restaurant.county + " , " + args.restaurant.city
+            binding.tvDetailWorkingHours.text = args.restaurant.workingHours
 
         }
         val view = binding.root
