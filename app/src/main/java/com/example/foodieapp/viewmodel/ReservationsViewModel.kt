@@ -33,6 +33,10 @@ class ReservationsViewModel  (application: Application) : AndroidViewModel(appli
         return reservationRepo.getResEmail(email)
     }
 
+    fun getAllReservation(deskNo: String, date: String,restaurantName: String): LiveData<List<ReservationEntry>> {
+        return reservationRepo.getAllReservation(deskNo,date,restaurantName)
+    }
+
 
 
 

@@ -12,6 +12,6 @@ class ReservationRepository(val reservationDao: ReservationDao) {
 
     fun getResEmail(email: String)=reservationDao.getResByEmail(email)
 
-
+    fun getAllReservation(date: String,deskNo: String,restaurantName: String)=reservationDao.getAllReservation(date, deskNo,restaurantName)
 
 }

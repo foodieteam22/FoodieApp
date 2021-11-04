@@ -18,8 +18,8 @@ interface ReservationDao {
     @Query("DELETE FROM reservation_table")
     suspend fun deleteAll()
 
-    @Query("SELECT * FROM reservation_table")
-    fun getAllReservation(): LiveData<List<ReservationEntry>>
+    @Query("SELECT * FROM reservation_table WHERE date=:date AND deskNo=:deskNo AND restaurantName=:restaurantName")
+    fun getAllReservation(deskNo: String,date: String,restaurantName: String): LiveData<List<ReservationEntry>>
 
     @Query("SELECT * FROM reservation_table WHERE email=:email")
     fun getResByEmail(email: String):LiveData<List<ReservationEntry>>

@@ -20,6 +20,7 @@ import com.example.foodieapp.databinding.FragmentProfileBinding
 import com.example.foodieapp.databinding.FragmentReservationsBinding
 import com.example.foodieapp.utils.downloadImage
 import com.example.foodieapp.utils.makePlaceholder
+import com.example.foodieapp.viewadapter.ReservationAdapter
 import com.example.foodieapp.viewmodel.ProfileViewModel
 import com.example.foodieapp.viewmodel.ReservationsViewModel
 
@@ -129,19 +130,22 @@ class ReservationsFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }
             else
             {
-                try {
-                    val reservationEntry = ReservationEntry(
-                        0,restaurantName,email,deskNo,personCount,date)
-                    viewModel.insertReservation(reservationEntry)
+                viewModel.getAllReservation(deskNo,date,restaurantName).observe(viewLifecycleOwner){
 
-                }
-                catch (e: SQLiteConstraintException){
-                    Toast.makeText(requireContext(), "Rezervasyon yapılamadı", Toast.LENGTH_SHORT).show()
+                        if (it.isNotEmpty()){
+                            Toast.makeText(requireContext(), "Bu restorana daha önce aynı saat ve masada rezervasyon yapılmış.", Toast.LENGTH_SHORT).show()
+                        }
+                        else
+                        {
+                            val reservationEntry = ReservationEntry(
+                                0,restaurantName,email,deskNo,personCount,date)
+                            viewModel.insertReservation(reservationEntry)
 
+                            val action= ReservationsFragmentDirections.actionReservationsFragmentToListReservationFragment(args.user)
+                            Navigation.findNavController(view).navigate(action)
+                        }
+                    }
 
-                }
-                val action= ReservationsFragmentDirections.actionReservationsFragmentToListReservationFragment(args.user)
-                Navigation.findNavController(view).navigate(action)
 
             }
 
