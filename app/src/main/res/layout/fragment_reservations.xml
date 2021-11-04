@@ -126,7 +126,7 @@
             android:padding="0dp">
 
             <ImageView
-                android:id="@+id/ImgBooking"
+                android:id="@+id/imgTable"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="120dp"
@@ -135,14 +135,12 @@
                 />
 
             <ImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/imgChangePassword"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:id="@+id/imgMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="120dp"
-                android:src="@drawable/ic_baseline_menu_book_24"
-               />
+                android:src="@drawable/ic_baseline_menu_book_24" />
 
         </LinearLayout>
         <LinearLayout

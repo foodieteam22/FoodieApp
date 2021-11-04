@@ -218,10 +218,9 @@ class ProfileFragment : Fragment() {
                             downloadUrl
                         )
                          viewModel.updatePhoto(user)
-                         Toast.makeText(requireContext(), "güncellendi", Toast.LENGTH_SHORT).show()
 
                 }.addOnFailureListener {
-                    Toast.makeText(requireContext(), "NOOOO", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_SHORT).show()
                 }
             }
         }

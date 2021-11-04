@@ -40,9 +40,10 @@
 
     </LinearLayout>
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+        android:id="@+id/imgRestaurant"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginHorizontal="50dp"
         android:src="@drawable/resturant_demo_image" />
 
 

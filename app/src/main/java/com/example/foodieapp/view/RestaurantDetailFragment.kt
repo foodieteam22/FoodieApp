@@ -17,6 +17,8 @@ import com.example.foodieapp.databinding.FragmentCommentsBinding
 import com.example.foodieapp.databinding.FragmentLoginBinding
 import com.example.foodieapp.databinding.FragmentRatingBinding
 import com.example.foodieapp.databinding.FragmentRestaurantDetailBinding
+import com.example.foodieapp.utils.downloadImage
+import com.example.foodieapp.utils.makePlaceholder
 import com.example.foodieapp.viewadapter.CommentsAdapter
 import com.example.foodieapp.viewadapter.RestaurantFeatureEntryAdapter
 import com.example.foodieapp.viewmodel.FavoriteViewModel
@@ -152,6 +154,7 @@ class RestaurantDetailFragment : Fragment() {
 
 
             }
+            binding.imgRestaurant.downloadImage(args.restaurant.image, makePlaceholder(requireContext()))
             binding.tvDetailRestName.text= args.restaurant.name
             binding.tvDetailRestRate.text= args.restaurant.rating
             binding.tvDeatilLocation.text = args.restaurant.county + " , " + args.restaurant.city
@@ -170,7 +173,7 @@ class RestaurantDetailFragment : Fragment() {
     fun onTableSchemeClick()
     {
         val url = "https://www.gstatic.com/webp/gallery/1.jpg"
-        val action = RestaurantDetailFragmentDirections.actionDetailFragmentToTableSchemeFragment(url,args.user)
+        val action = RestaurantDetailFragmentDirections.actionDetailFragmentToTableSchemeFragment(args.restaurant.imageResource,args.user)
         Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(action)
     }
     fun onDetailRateClick()
