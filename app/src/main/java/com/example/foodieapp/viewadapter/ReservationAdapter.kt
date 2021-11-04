@@ -9,7 +9,7 @@ import com.example.foodieapp.utils.downloadImage
 import com.example.foodieapp.utils.makePlaceholder
 
 
-class ReservationAdapter(private  val ReservationList: ArrayList<ReservationEntry>) : RecyclerView.Adapter<ReservationAdapter.ReservationHolder>(){
+class ReservationAdapter(private  val ReservationList: List<ReservationEntry>) : RecyclerView.Adapter<ReservationAdapter.ReservationHolder>(){
     class ReservationHolder(val binding: ReservationListRowBinding): RecyclerView.ViewHolder(binding.root) {
 
     }

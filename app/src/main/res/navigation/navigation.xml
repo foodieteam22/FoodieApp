@@ -263,5 +263,14 @@
         <argument
             android:name="user"
             app:argType="com.example.foodieapp.database.UserEntry" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_listReservationFragment"
+            app:destination="@id/listReservationFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_restaurantFragment"
+            app:destination="@id/restaurantFragment" />
     </fragment>
 </navigation>

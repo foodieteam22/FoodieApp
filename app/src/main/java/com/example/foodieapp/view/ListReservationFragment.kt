@@ -28,7 +28,7 @@ import com.google.firebase.auth.FirebaseAuth
 class ListReservationFragment : Fragment() {
 
     private val viewModel: ReservationsViewModel by viewModels()
-    private  lateinit var reservationArrayList : ArrayList<ReservationEntry>
+    private  lateinit var reservationArrayList : List<ReservationEntry>
     private lateinit var reservationEntry: ReservationEntry
     private lateinit var reservationAdapter: ReservationAdapter
     private lateinit var auth: FirebaseAuth
@@ -62,15 +62,12 @@ class ListReservationFragment : Fragment() {
 
             if (!it.isEmpty()){
                 binding.tvrec.visibility=View.GONE
-                reservationArrayList.clear()
+                bindRecyclerView(ReservationAdapter(it))
 
-                for (res in it){
-                    reservationArrayList.add(res)
-                }
-
-
-
-                bindRecyclerView(ReservationAdapter(reservationArrayList))
+            }
+            else
+            {
+                binding.tvrec.visibility=View.VISIBLE
 
             }
 
