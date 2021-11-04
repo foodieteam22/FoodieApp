@@ -216,9 +216,9 @@
 
         </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="25dp">
 
@@ -226,39 +226,36 @@
             android:id="@+id/restaurantFeatureRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:listitem="@layout/row_restaurant_feature" />
+            android:layout_alignParentTop="true"
+            tools:listitem="@layout/row_restaurant_feature"
+            android:layout_above="@id/bottomNavigationMenu"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButtonAddReservation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="60dp"
+            android:layout_marginEnd="10dp"
             android:clickable="true"
             android:onClick="onAddReservationClick"
             android:src="@drawable/ic_add"
             app:backgroundTint="@color/orange"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_above="@id/bottomNavigationMenu"
+            android:layout_alignParentEnd="true"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationMenu"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             app:itemIconTint="@color/orange"
             app:itemTextColor="@color/orange"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom_menu"/>
+            app:menu="@menu/bottom_menu"
+            android:layout_alignParentBottom="true"
+            />
 
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 
 

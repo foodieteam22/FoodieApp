@@ -11,6 +11,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodieapp.R
 import com.example.foodieapp.database.*
 import com.example.foodieapp.databinding.FragmentCommentsBinding
@@ -117,6 +118,7 @@ class RestaurantDetailFragment : Fragment() {
 
 
             }
+            binding.restaurantFeatureRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             binding.restaurantFeatureRecyclerView.adapter = adapter
             layoutResDetailComments.setOnClickListener{
                onCommentsClick()
