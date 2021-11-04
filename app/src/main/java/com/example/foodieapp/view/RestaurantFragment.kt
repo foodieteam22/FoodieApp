@@ -136,19 +136,15 @@ class RestaurantFragment : Fragment() {
     }
 
     fun parseJSON() {
-
-        //val retrofit = ApiManager.retrofitInstance
-
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://raw.githubusercontent.com")
+            .baseUrl(getString(R.string.rest_base_url))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        // Create Service
         val service = retrofit.create(ResturantService::class.java)
         CoroutineScope(Dispatchers.IO).launch {
 
-            var response = service.getRest("/foodieteam22/mockjson/main/test.json")
+            var response = service.getRest(getString(R.string.rest_url))
 
             response!!.enqueue(object : Callback<ArrayList<RestaurantModel>> {
                 override fun onResponse(call: Call<ArrayList<RestaurantModel>>, response: Response<ArrayList<RestaurantModel>>)
@@ -169,12 +165,12 @@ class RestaurantFragment : Fragment() {
                         adapter = ResturantAdapter(context, restData, args.user)
                         binding.resturantrecyclerView.layoutManager =LinearLayoutManager(context)
                         binding.resturantrecyclerView.adapter =adapter
-                        count = 1
+
                     }
 
                     else
                     {
-                        Log.e("onurmessage","AndACustomTag")
+                        Log.e("restCallFailed","AndACustomTag")
                     }
                 }
                 override fun onFailure(call: Call<ArrayList<RestaurantModel>>, t: Throwable) {
