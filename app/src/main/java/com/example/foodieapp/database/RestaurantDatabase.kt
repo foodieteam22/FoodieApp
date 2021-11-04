@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = arrayOf(RestaurantEntry::class,CommentEntry::class,RatingEntry::class,UserEntry::class,RestaurantFeatureEntry::class,ReservationEntry::class),version = 2,exportSchema = false)
+@Database(entities = arrayOf(RestaurantEntry::class,CommentEntry::class,RatingEntry::class,UserEntry::class,RestaurantFeatureEntry::class,ReservationEntry::class,FavoriteEntry::class),version = 2,exportSchema = false)
 abstract class RestaurantDatabase:RoomDatabase() {
 
     abstract fun resturantDao():RestaurantDao
@@ -14,6 +14,7 @@ abstract class RestaurantDatabase:RoomDatabase() {
     abstract fun restaurantFeatureDao():RestaurantFeatureDao
     abstract fun userDao():UserDao
     abstract fun reservationDao():ReservationDao
+    abstract fun favoriteDao():FavoriteDao
 
     companion object
    {

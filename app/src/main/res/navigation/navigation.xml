@@ -69,6 +69,9 @@
         <action
             android:id="@+id/action_profileFragment_to_listReservationFragment"
             app:destination="@id/listReservationFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/commentFragment"
@@ -209,6 +212,9 @@
         <action
             android:id="@+id/action_restaurantDetailFragment_to_ratingFragment"
             app:destination="@id/ratingFragment" />
+        <action
+            android:id="@+id/action_restaurantDetailFragment_self"
+            app:destination="@id/restaurantDetailFragment" />
 
     </fragment>
     <fragment
@@ -246,5 +252,16 @@
         <action
             android:id="@+id/action_listReservationFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_listReservationFragment_self"
+            app:destination="@id/listReservationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.foodieapp.view.FavoriteFragment"
+        android:label="FavoriteFragment" >
+        <argument
+            android:name="user"
+            app:argType="com.example.foodieapp.database.UserEntry" />
     </fragment>
 </navigation>

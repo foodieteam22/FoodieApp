@@ -10,17 +10,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.example.foodieapp.R
-import com.example.foodieapp.database.CommentEntry
-import com.example.foodieapp.database.RestaurantEntry
-import com.example.foodieapp.database.RestaurantFeatureEntry
-import com.example.foodieapp.database.UserEntry
+import com.example.foodieapp.database.*
 import com.example.foodieapp.databinding.FragmentCommentsBinding
 import com.example.foodieapp.databinding.FragmentLoginBinding
 import com.example.foodieapp.databinding.FragmentRatingBinding
 import com.example.foodieapp.databinding.FragmentRestaurantDetailBinding
 import com.example.foodieapp.viewadapter.CommentsAdapter
 import com.example.foodieapp.viewadapter.RestaurantFeatureEntryAdapter
+import com.example.foodieapp.viewmodel.FavoriteViewModel
 import com.example.foodieapp.viewmodel.LoginViewModel
 import com.example.foodieapp.viewmodel.RestaurantDetailViewModel
 import com.google.firebase.auth.ktx.auth
@@ -32,6 +31,7 @@ class RestaurantDetailFragment : Fragment() {
     //private val binding get() = _binding!!
     private var _binding: FragmentRestaurantDetailBinding? = null
     private val viewModel: RestaurantDetailViewModel by viewModels()
+    private val favoriteViewModel: FavoriteViewModel by viewModels()
     private lateinit var adapter: RestaurantFeatureEntryAdapter
     private lateinit var featureList: ArrayList<RestaurantFeatureEntry>
     private lateinit var user: UserEntry
@@ -52,6 +52,69 @@ class RestaurantDetailFragment : Fragment() {
 
         binding.apply {
 
+            favoriteViewModel.getFavoriteByEmail(args.user.email).observe(viewLifecycleOwner){
+                if (it.isEmpty()){
+                    binding.addFavorite.visibility=View.VISIBLE
+                    binding.deleteFavorite.visibility=View.GONE
+
+                }
+                else
+                {
+                    for (favorites in it){
+                        if (favorites.restaurantName==args.restaurant.name){
+                            binding.addFavorite.visibility=View.GONE
+                            binding.deleteFavorite.visibility=View.VISIBLE
+                            break
+                        }
+                        else{
+                            binding.deleteFavorite.visibility=View.GONE
+                            binding.addFavorite.visibility=View.VISIBLE
+                        }
+
+                    }
+
+                }
+
+            }
+            binding.addFavorite.setOnClickListener {
+                binding.addFavorite.visibility=View.GONE
+                binding.deleteFavorite.visibility=View.VISIBLE
+                val restaurantName = args.restaurant.name
+                val userEmai= args.user.email
+                val favoriteEntry = FavoriteEntry(0,userEmai,restaurantName)
+                favoriteViewModel.insertFavorite(favoriteEntry)
+
+            }
+            binding.deleteFavorite.setOnClickListener {
+                binding.addFavorite.visibility=View.VISIBLE
+                binding.deleteFavorite.visibility=View.GONE
+                val restaurantName = args.restaurant.name
+                val userEmai= args.user.email
+                favoriteViewModel.getFavoriteByEmail(args.user.email).observe(viewLifecycleOwner){
+                    for(fav in it){
+                        if (it.isEmpty()){
+                            binding.addFavorite.visibility=View.VISIBLE
+                            binding.deleteFavorite.visibility=View.GONE
+
+                        }
+                        else
+                        {
+                            if (fav.restaurantName==args.restaurant.name)
+                            {
+                                favoriteViewModel.deleteFavorite(fav)
+                                val action= RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentSelf(args.user,args.restaurant)
+                                Navigation.findNavController(requireView()).navigate(action)
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+
+            }
             binding.restaurantFeatureRecyclerView.adapter = adapter
             layoutResDetailComments.setOnClickListener{
                onCommentsClick()

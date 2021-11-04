@@ -115,6 +115,10 @@ class ProfileFragment : Fragment() {
 
 
        }
+       binding.btnBooking.setOnClickListener {
+           val action = ProfileFragmentDirections.actionProfileFragmentToFavoriteFragment(args.user)
+           Navigation.findNavController(view).navigate(action)
+       }
 
 
 

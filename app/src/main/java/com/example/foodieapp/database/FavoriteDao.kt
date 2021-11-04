@@ -15,5 +15,5 @@ interface FavoriteDao {
     suspend fun delete(favoriteEntry: FavoriteEntry)
 
     @Query("SELECT * FROM favorite_table WHERE userEmail=:userEmail")
-    fun getFavoriteByEmail(userEmail: String): LiveData<List<UserEntry>>
+    fun getFavoriteByEmail(userEmail: String): LiveData<List<FavoriteEntry>>
 }

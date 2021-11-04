@@ -133,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:inputType="text"
-                    android:text="Rezervasyonlarım"
+                    android:text="Favorilerim"
                     android:layout_marginLeft="5dp"
                     android:textAlignment="textStart"
                     android:textColor="@color/orange"
