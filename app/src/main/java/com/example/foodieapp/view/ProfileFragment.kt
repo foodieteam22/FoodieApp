@@ -88,8 +88,11 @@ class ProfileFragment : Fragment() {
    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-         binding.tvUserName.text = args.user.email
-         binding.imgProfile.downloadImage(args.user.downloadUrl, makePlaceholder(requireContext()))
+       viewModel.getUserByEmail(args.user.email).observe(viewLifecycleOwner){
+           binding.imgProfile.downloadImage(it[0].downloadUrl, makePlaceholder(requireContext()))
+       }
+          binding.tvUserName.text = args.user.email
+         //binding.imgProfile.downloadImage(args.user.downloadUrl, makePlaceholder(requireContext()))
          registerLauncher()
 
 
@@ -218,6 +221,9 @@ class ProfileFragment : Fragment() {
                             downloadUrl
                         )
                          viewModel.updatePhoto(user)
+
+
+
 
                 }.addOnFailureListener {
                     Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_SHORT).show()

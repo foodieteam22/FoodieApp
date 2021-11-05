@@ -23,16 +23,33 @@
             android:gravity="center"
             android:text="@string/comment_not_found"/>
 
+        <TextView
+            android:id="@+id/tvComments"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="Yorumlar"
+            android:textColor="@color/orange"
+            android:textAlignment="center"
+            android:fontFamily="@font/abeezee"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_marginVertical="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/commentsRecyclerView"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/commentsRecyclerView"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvComments"
             tools:listitem="@layout/comment_row_layout" />
 
         <androidx.constraintlayout.widget.ConstraintLayout

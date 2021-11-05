@@ -15,14 +15,31 @@
         android:gravity="center"
         android:text="Favori Restoran Bulunamadı"/>
 
+    <TextView
+        android:id="@+id/tvFavorite"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="Favorilerim"
+        android:textColor="@color/orange"
+        android:textAlignment="center"
+        android:fontFamily="@font/abeezee"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </TextView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFavorite"
         tools:listitem="@layout/favorite_row" />
 
 
